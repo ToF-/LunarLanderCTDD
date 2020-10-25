@@ -1,5 +1,6 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
+#include "controller.h"
 
 int main() {
     al_init();
@@ -17,18 +18,33 @@ int main() {
     bool redraw = true;
     ALLEGRO_EVENT event;
 
+    CONTROLLER *controller = controller_create();
     al_start_timer(timer);
+    unsigned long ticks = 0;
     while(true)
     {
         al_wait_for_event(queue, &event);
         if(event.type == ALLEGRO_EVENT_TIMER)
+        {
+            ticks++;
+            if(controller->active)
+                controller_tick(controller,ticks);
             redraw = true;
-        else if((event.type == ALLEGRO_EVENT_KEY_DOWN) || (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE))
+        }
+        else if(event.type == ALLEGRO_EVENT_KEY_DOWN)
+        {
+            if(controller->active)
+                controller->keycode = event.keyboard.keycode;
+        }
+        else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;
         if(redraw && al_is_event_queue_empty(queue))
         {
             al_clear_to_color(al_map_rgb(0x00, 0x00, 0x00));
-            al_draw_text(font, al_map_rgb(0xff, 0xff, 0xff), 0x00, 0x00, 0x00, "Hello, world!");
+            if(controller->active)
+                al_draw_text(font, al_map_rgb(0xff, 0xff, 0xff), 0x00, 0x00, 0x00, controller->message);
+            else 
+                al_draw_text(font, al_map_rgb(0xff, 0xff, 0xff), 0x00, 0x00, 0x00, "Hello, world!");
             al_flip_display();
             redraw = false;
         }
@@ -37,5 +53,6 @@ int main() {
     al_destroy_display(display);
     al_destroy_timer(timer);
     al_destroy_event_queue(queue);
+    free(controller);
     return 0;
 }

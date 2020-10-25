@@ -8,5 +8,8 @@ UNITY_ROOT=unity
 INC_DIRS=-Isrc -I$(UNITY_ROOT)/src -Itest/mocks -I$(UNITY_ROOT)/extras/fixture/src -I$(UNITY_ROOT)/extras/memory/src -Iinclude/util
 
 console: $(SRC_FILES)
-	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SYMBOLS) $(SRC_FILES) -o console $(shell pkg-config allegro-5 allegro_main-5 allegro_font-5 --libs --cflags) -lallegro_main
+	$(C_COMPILER) $(CFLAGS) $(INC_DIRS) $(SYMBOLS) $(SRC_FILES) -o console $(shell pkg-config allegro-5 allegro_main-5 allegro_font-5 --libs --cflags) -lallegro_main -lmock_controller
 	./console
+
+mock_controller: test/mocks/mock_controller.c
+	$(C_COMPILER) $(INC_DIRS) test/mocks/mock_controller.c -c -o mock_controller
