@@ -1,6 +1,8 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
+#include "allegro5/allegro_ttf.h"
 #include "controller.h"
+
 
 int main() {
     al_init();
@@ -9,16 +11,28 @@ int main() {
     ALLEGRO_TIMER * timer = al_create_timer(1.0 / 30.0);
     ALLEGRO_EVENT_QUEUE * queue = al_create_event_queue();
     ALLEGRO_DISPLAY * display = al_create_display(640, 400);
-    ALLEGRO_FONT * font = al_create_builtin_font();
-
+    /* ALLEGRO_FONT * font = al_create_builtin_font(); */
+    al_init_font_addon();
+    al_init_ttf_addon();
+    ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
+    al_append_path_component(path, "resources");
+    al_change_directory(al_path_cstr(path, '/'));
+    al_destroy_path(path);
+    ALLEGRO_FONT * font = al_load_ttf_font("courier.ttf", 72, 72);
+    if(!font) {
+        printf("unable to load ttf font:courier.ttf\n");
+        return 1;
+    }
     al_register_event_source(queue, al_get_keyboard_event_source());
     al_register_event_source(queue, al_get_display_event_source(display));
     al_register_event_source(queue, al_get_timer_event_source(timer));
-    
+
+
     bool redraw = true;
     ALLEGRO_EVENT event;
 
     CONTROLLER *controller = controller_create();
+    controller_activate(controller);
     al_start_timer(timer);
     unsigned long ticks = 0;
     while(true)

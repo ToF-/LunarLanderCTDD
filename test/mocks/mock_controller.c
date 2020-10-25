@@ -14,7 +14,7 @@ void controller_activate(CONTROLLER *controller) {
 }
 void controller_tick(CONTROLLER *controller, unsigned long ticks) {
     char buffer[80];
-    sprintf(buffer,"TICKS:%ld", ticks);
+    sprintf(buffer,"TICKS:%ld", ticks/30);
     strcpy(controller->message, buffer);
 }
 void controller_destroy(CONTROLLER *controller) {
