@@ -10,12 +10,17 @@ CONTROLLER * controller_create() {
 }
 void controller_activate(CONTROLLER *controller) {
     controller->active = true;
+    controller->position.y = 0;
     strcpy(controller->message,"MOCK CONTROLLER READY");
 }
 void controller_tick(CONTROLLER *controller, unsigned long ticks) {
     char buffer[80];
-    sprintf(buffer,"TICKS:%ld", ticks/30);
-    strcpy(controller->message, buffer);
+    if((ticks % 30) == 0)
+    {
+        controller->position.y += 5;
+        sprintf(buffer,"HEIGHT:%02.1f", 1000-controller->position.y);
+        strcpy(controller->message, buffer);
+    }
 }
 void controller_destroy(CONTROLLER *controller) {
     free(controller);

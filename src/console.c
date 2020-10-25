@@ -1,5 +1,6 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
 #include "allegro5/allegro_ttf.h"
 #include "controller.h"
 
@@ -12,13 +13,14 @@ int main() {
     ALLEGRO_EVENT_QUEUE * queue = al_create_event_queue();
     ALLEGRO_DISPLAY * display = al_create_display(640, 400);
     /* ALLEGRO_FONT * font = al_create_builtin_font(); */
+    al_init_primitives_addon();
     al_init_font_addon();
     al_init_ttf_addon();
     ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
     al_append_path_component(path, "resources");
     al_change_directory(al_path_cstr(path, '/'));
     al_destroy_path(path);
-    ALLEGRO_FONT * font = al_load_ttf_font("courier.ttf", 72, 72);
+    ALLEGRO_FONT * font = al_load_ttf_font("courier.ttf", 48, 48);
     if(!font) {
         printf("unable to load ttf font:courier.ttf\n");
         return 1;
@@ -33,6 +35,8 @@ int main() {
 
     CONTROLLER *controller = controller_create();
     controller_activate(controller);
+    controller->position.x = 100;
+    controller->position.y = 100;
     al_start_timer(timer);
     unsigned long ticks = 0;
     while(true)
@@ -56,7 +60,12 @@ int main() {
         {
             al_clear_to_color(al_map_rgb(0x00, 0x00, 0x00));
             if(controller->active)
+            {
                 al_draw_text(font, al_map_rgb(0xff, 0xff, 0xff), 0x00, 0x00, 0x00, controller->message);
+                double x = controller->position.x;
+                double y = controller->position.y;
+                al_draw_rectangle(x, y, x+20, y+20, al_map_rgb(0x00, 0xff, 0x80),3);
+            }
             else 
                 al_draw_text(font, al_map_rgb(0xff, 0xff, 0xff), 0x00, 0x00, 0x00, "Hello, world!");
             al_flip_display();
