@@ -66,6 +66,7 @@ int main(int argc, char *argv[])
         if(event.type == ALLEGRO_EVENT_TIMER)
         {
             redraw = true;
+            controller_tick(ticks);
             ticks++;
             y++;
         }

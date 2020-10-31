@@ -19,3 +19,5 @@ C - TDD - allegro graphic library
 
 ## 08 - a controller displays a message to a console when initializing - test first
 
+## 09 - after 3 seconds (90 ticks) the controller displays height, velocity and fuel information - test first
+
