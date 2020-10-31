@@ -42,6 +42,9 @@ int main(int argc, char *argv[])
     unsigned char key_code;
     static char message[80];
     ALLEGRO_EVENT event;
+    ALLEGRO_COLOR green = al_map_rgb(0, 255, 0);
+    ALLEGRO_COLOR orange = al_map_rgb(255,127, 0);
+    ALLEGRO_COLOR display_color = green;
     
     al_start_timer(timer);
     while(true)
@@ -64,10 +67,19 @@ int main(int argc, char *argv[])
         {
             al_clear_to_color(al_map_rgb(0, 0, 0));
             if(key_down)
-                sprintf(message, "key code: %d ", key_code);
+            {
+                sprintf(message, "key code: %d", key_code, ALLEGRO_KEY_SPACE);
+                if(key_code == ALLEGRO_KEY_SPACE)
+                    display_color = orange;
+                else
+                    display_color = green;
+            }
             else
+            {
                 sprintf(message, "no key");
-            al_draw_text(font, al_map_rgb(0, 255, 0), 0, 0, 0, message);
+                display_color = green;
+            }
+            al_draw_text(font, display_color, 0, 0, 0, message);
             al_flip_display();
             redraw = false;
         }

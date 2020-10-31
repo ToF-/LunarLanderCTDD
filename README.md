@@ -10,3 +10,5 @@ C - TDD - allegro graphic library
 ## 03 - install and use a font for display
 
 ## 04 - display the code of the key being hit
+
+## 05 - changes the color of display when space is pressed
