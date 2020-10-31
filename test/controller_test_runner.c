@@ -2,5 +2,5 @@
 
 TEST_GROUP_RUNNER(Controller)
 {
-    RUN_TEST_CASE(Controller, Dummy);
+    RUN_TEST_CASE(Controller, DisplaysWhenInitialized);
 }

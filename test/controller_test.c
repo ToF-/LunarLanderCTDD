@@ -1,4 +1,6 @@
 #include "unity_fixture.h"
+#include "controller.h"
+#include "mock_console.h"
 
 TEST_GROUP(Controller);
 
@@ -10,7 +12,8 @@ TEST_TEAR_DOWN(Controller)
 {
 }
 
-TEST(Controller, Dummy)
+TEST(Controller, DisplaysWhenInitialized)
 {
-    TEST_ASSERT_EQUAL(5, 2+2);
+    controller_init();
+    TEST_ASSERT_EQUAL_STRING("LUNAR LANDING -- READY", last_message);
 }

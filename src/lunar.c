@@ -3,8 +3,16 @@
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include "allegro5/allegro_primitives.h"
+#include "console.h"
+#include "controller.h"
 #define FONT_NAME "Dosis Light 300.ttf"
 
+char message[80];
+void console_display(char *s)
+{
+    sprintf(message, "%s", s);
+
+}
 int main(int argc, char *argv[])
 {
     int display_size=1000;
@@ -28,7 +36,7 @@ int main(int argc, char *argv[])
     ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
     al_append_path_component(path, "../resources");
     al_change_directory(al_path_cstr(path, '/'));
-    ALLEGRO_FONT * font = al_load_ttf_font(FONT_NAME, 32, 32);
+    ALLEGRO_FONT *font = al_load_ttf_font(FONT_NAME, 32, 32);
     if(!font) {
         printf("unable to load ttf font:%s (path=%s)\n",FONT_NAME, al_path_cstr(path,'/'));
         return 1;
@@ -41,7 +49,6 @@ int main(int argc, char *argv[])
     bool redraw = true;
     bool key_down = false;
     unsigned char key_code;
-    static char message[80];
     unsigned long ticks=0;
     float x,y;
     x = (float)al_get_display_width(display)/2;
@@ -51,6 +58,7 @@ int main(int argc, char *argv[])
     ALLEGRO_COLOR orange = al_map_rgb(255,127, 0);
     ALLEGRO_COLOR display_color = green;
     
+    controller_init();
     al_start_timer(timer);
     while(true)
     {
@@ -86,8 +94,7 @@ int main(int argc, char *argv[])
             {
                 display_color = green;
             }
-            sprintf(message, "ticks: %09lu", ticks);
-            al_draw_text(font, display_color, 0, 0, 0, message);
+            al_draw_text(font, display_color, 10, 10, 0, message);
             al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 0, 0));
 
             al_flip_display();
