@@ -38,6 +38,9 @@ int main(int argc, char *argv[])
     al_register_event_source(queue, al_get_timer_event_source(timer));
 
     bool redraw = true;
+    bool key_down = false;
+    unsigned char key_code;
+    static char message[80];
     ALLEGRO_EVENT event;
     
     al_start_timer(timer);
@@ -48,10 +51,23 @@ int main(int argc, char *argv[])
             redraw = true;
         else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;
+        else if(event.type == ALLEGRO_EVENT_KEY_DOWN)
+        {
+            key_down = true;
+            key_code = event.keyboard.keycode;
+        }
+        else if(event.type == ALLEGRO_EVENT_KEY_UP)
+        {
+            key_down = false;
+        }
         if(redraw && al_event_queue_is_empty(queue))
         {
             al_clear_to_color(al_map_rgb(0, 0, 0));
-            al_draw_text(font, al_map_rgb(0, 255, 0), 0, 0, 0, "Hello world!");
+            if(key_down)
+                sprintf(message, "key code: %d ", key_code);
+            else
+                sprintf(message, "no key");
+            al_draw_text(font, al_map_rgb(0, 255, 0), 0, 0, 0, message);
             al_flip_display();
             redraw = false;
         }

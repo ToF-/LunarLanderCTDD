@@ -8,3 +8,5 @@ C - TDD - allegro graphic library
 ## 02 - make the display size a command line arg
 
 ## 03 - install and use a font for display
+
+## 04 - display the code of the key being hit
