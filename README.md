@@ -12,3 +12,5 @@ C - TDD - allegro graphic library
 ## 04 - display the code of the key being hit
 
 ## 05 - changes the color of display when space is pressed
+
+## 06 - display a tick counter at every redraw

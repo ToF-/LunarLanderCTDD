@@ -41,6 +41,7 @@ int main(int argc, char *argv[])
     bool key_down = false;
     unsigned char key_code;
     static char message[80];
+    unsigned long ticks=0;
     ALLEGRO_EVENT event;
     ALLEGRO_COLOR green = al_map_rgb(0, 255, 0);
     ALLEGRO_COLOR orange = al_map_rgb(255,127, 0);
@@ -51,7 +52,10 @@ int main(int argc, char *argv[])
     {
         al_wait_for_event(queue, &event);
         if(event.type == ALLEGRO_EVENT_TIMER)
+        {
             redraw = true;
+            ticks++;
+        }
         else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;
         else if(event.type == ALLEGRO_EVENT_KEY_DOWN)
@@ -68,7 +72,6 @@ int main(int argc, char *argv[])
             al_clear_to_color(al_map_rgb(0, 0, 0));
             if(key_down)
             {
-                sprintf(message, "key code: %d", key_code, ALLEGRO_KEY_SPACE);
                 if(key_code == ALLEGRO_KEY_SPACE)
                     display_color = orange;
                 else
@@ -76,9 +79,9 @@ int main(int argc, char *argv[])
             }
             else
             {
-                sprintf(message, "no key");
                 display_color = green;
             }
+            sprintf(message, "ticks: %09lu", ticks);
             al_draw_text(font, display_color, 0, 0, 0, message);
             al_flip_display();
             redraw = false;
