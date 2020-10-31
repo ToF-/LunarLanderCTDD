@@ -2,6 +2,7 @@
 #include "allegro5/allegro5.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
+#include "allegro5/allegro_primitives.h"
 #define FONT_NAME "Dosis Light 300.ttf"
 
 int main(int argc, char *argv[])
@@ -42,6 +43,9 @@ int main(int argc, char *argv[])
     unsigned char key_code;
     static char message[80];
     unsigned long ticks=0;
+    float x,y;
+    x = (float)al_get_display_width(display)/2;
+    y = (float)al_get_display_height(display)/5;
     ALLEGRO_EVENT event;
     ALLEGRO_COLOR green = al_map_rgb(0, 255, 0);
     ALLEGRO_COLOR orange = al_map_rgb(255,127, 0);
@@ -55,6 +59,7 @@ int main(int argc, char *argv[])
         {
             redraw = true;
             ticks++;
+            y++;
         }
         else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;
@@ -83,6 +88,8 @@ int main(int argc, char *argv[])
             }
             sprintf(message, "ticks: %09lu", ticks);
             al_draw_text(font, display_color, 0, 0, 0, message);
+            al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 0, 0));
+
             al_flip_display();
             redraw = false;
         }

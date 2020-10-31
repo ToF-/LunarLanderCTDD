@@ -14,3 +14,6 @@ C - TDD - allegro graphic library
 ## 05 - changes the color of display when space is pressed
 
 ## 06 - display a tick counter at every redraw
+
+## 07 - display a square at a position that evolves at each tick count
+
