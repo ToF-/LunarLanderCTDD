@@ -2,13 +2,23 @@
 #include "allegro5/allegro5.h"
 #include "allegro5/allegro_font.h"
 
-int main()
+int main(int argc, char *argv[])
 {
+    int display_size=1000;
+    if(argc > 1)
+    {
+        int size;
+        printf("adjusting size...");
+        sscanf(argv[1], "%d", &size);
+        printf("to %d\n", size);
+        if(size >= 200 && size <= 1000)
+            display_size = size;
+    }
     al_init();
     al_install_keyboard();
     ALLEGRO_TIMER * timer = al_create_timer(1.0 / 30.0);
     ALLEGRO_EVENT_QUEUE * queue = al_create_event_queue();
-    ALLEGRO_DISPLAY * display = al_create_display(1000,1000);
+    ALLEGRO_DISPLAY * display = al_create_display(display_size, display_size);
     ALLEGRO_FONT * font = al_create_builtin_font();
 
     al_register_event_source(queue, al_get_keyboard_event_source());
