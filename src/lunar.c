@@ -6,6 +6,7 @@
 #include "console.h"
 #include "controller.h"
 #define FONT_NAME "Dosis Light 300.ttf"
+#define REDRAW_RATE (1.0 / 30.0)
 
 char message[80];
 void console_display(char *s)
@@ -15,6 +16,7 @@ void console_display(char *s)
 }
 int main(int argc, char *argv[])
 {
+    float redraw_rate = REDRAW_RATE;
     int display_size=1000;
     if(argc > 1)
     {
@@ -27,7 +29,7 @@ int main(int argc, char *argv[])
     }
     al_init();
     al_install_keyboard();
-    ALLEGRO_TIMER * timer = al_create_timer(1.0 / 30.0);
+    ALLEGRO_TIMER * timer = al_create_timer(redraw_rate);
     ALLEGRO_EVENT_QUEUE * queue = al_create_event_queue();
     ALLEGRO_DISPLAY * display = al_create_display(display_size, display_size);
 
@@ -66,7 +68,7 @@ int main(int argc, char *argv[])
         if(event.type == ALLEGRO_EVENT_TIMER)
         {
             redraw = true;
-            controller_tick(ticks);
+            controller_update(ticks, redraw_rate, 0.0);
             ticks++;
             y++;
         }

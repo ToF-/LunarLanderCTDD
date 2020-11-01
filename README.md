@@ -31,3 +31,5 @@ C - TDD - allegro graphic library
 
 ## 14 - with each tick the controller updates and displays the lander state -- refactoring
 
+## 15 - with each tick the console displays the updated lander state
+
