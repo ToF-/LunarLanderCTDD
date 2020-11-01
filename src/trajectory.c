@@ -16,9 +16,13 @@ void lander_update(LANDER * lander, float t, float burn_rate)
 
 int lander_status(LANDER lander)
 {
-    if(lander.height > 0.0)
-        return IN_FLIGHT;
-    else 
-        return LANDED;
+    if(lander.height <= 0.0)
+    {
+        if(lander.velocity >= SAFE_VELOCITY)
+            return LANDED;
+        else
+            return CRASHED;
+    }
+    return IN_FLIGHT;
 }
 

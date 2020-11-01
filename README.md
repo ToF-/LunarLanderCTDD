@@ -41,3 +41,5 @@ C - TDD - allegro graphic library
 
 ## 19 - if lander is at height <= 0 with safe velocity it has landed - test first
 
+## 20 - if lander is at height <= 0 with unsafe velocity it has crashed - test first
+

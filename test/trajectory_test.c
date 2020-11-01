@@ -59,3 +59,11 @@ TEST(Trajectory, StatusWhenHeightIsZeroAndSafeVelocity)
     lander.velocity = -0.5;
     TEST_ASSERT_EQUAL(LANDED, lander_status(lander));
 }
+TEST(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity)
+{
+    LANDER lander;
+    lander_initialize(&lander);
+    lander.height = 0.0;
+    lander.velocity = -1.5;
+    TEST_ASSERT_EQUAL(CRASHED, lander_status(lander));
+}

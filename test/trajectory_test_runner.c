@@ -7,4 +7,5 @@ TEST_GROUP_RUNNER(Trajectory)
     RUN_TEST_CASE(Trajectory, StateAfter2UpdatesWithBurnRate0);
     RUN_TEST_CASE(Trajectory, StateAfter2UpdatesWithBurnRate1);
     RUN_TEST_CASE(Trajectory, StatusWhenHeightIsZeroAndSafeVelocity);
+    RUN_TEST_CASE(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity);
 }
