@@ -29,3 +29,5 @@ C - TDD - allegro graphic library
 
 ## 13 - after 2 uptades of 1 second with burn rate 1 the state of the lander is height:50.5, velocity:1, fuel:18 - test first
 
+## 14 - with each tick the controller updates and displays the lander state -- refactoring
+

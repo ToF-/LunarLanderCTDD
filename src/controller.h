@@ -2,4 +2,4 @@
 
 void controller_init();
 void controller_display(char *);
-void controller_tick(unsigned long);
+void controller_update(unsigned long, float, float);

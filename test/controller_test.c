@@ -21,10 +21,10 @@ TEST(Controller, DisplaysWhenInitialized)
 TEST(Controller, After3SecondsDisplaysLanderState)
 {
     controller_init();
-    controller_tick(0);
+    controller_update(0, 0.0, 0.0);
     TEST_ASSERT_EQUAL_STRING("LUNAR LANDING -- READY", last_message);
-    controller_tick(89);
+    controller_update(89, 0.0, 0.0);
     TEST_ASSERT_EQUAL_STRING("LUNAR LANDING -- READY", last_message);
-    controller_tick(90);
-    TEST_ASSERT_EQUAL_STRING("HEIGHT:0050.0 -- VELOCITY:000.0 -- FUEL:20.0", last_message);
+    controller_update(90, 1.0, 0.0);
+    TEST_ASSERT_EQUAL_STRING("HEIGHT:0050.0 -- VELOCITY:-00.5 -- FUEL:20.0", last_message);
 }

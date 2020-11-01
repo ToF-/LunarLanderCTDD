@@ -18,9 +18,12 @@ void display_lander_state()
             lander.height, lander.velocity, lander.fuel);
     console_display(state_message);
 }
-void controller_tick(unsigned long ticks)
+void controller_update(unsigned long ticks, float t, float r)
 {
     if(ticks>=90)
+    {
+        lander_update(&lander, t, r);
         display_lander_state();
+    }
 }
 
