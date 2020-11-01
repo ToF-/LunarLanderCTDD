@@ -49,3 +49,5 @@ C - TDD - allegro graphic library
 
 ## 23 - when out of fuel, burn rate falls to zero when updating
 
+## 24 - arrange display with a fixed font -- spike
+

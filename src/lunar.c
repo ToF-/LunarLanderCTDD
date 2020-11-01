@@ -5,7 +5,7 @@
 #include "allegro5/allegro_primitives.h"
 #include "console.h"
 #include "controller.h"
-#define FONT_NAME "Dosis Light 300.ttf"
+#define FONT_NAME "courier.ttf"
 #define REDRAW_RATE (1.0 / 30.0)
 
 char message[80];
@@ -18,14 +18,14 @@ int main(int argc, char *argv[])
 {
     float redraw_rate = REDRAW_RATE;
     float burn_rate = 0.0;
-    int display_size=1000;
+    int display_size=1200;
     if(argc > 1)
     {
         int size;
         printf("adjusting size...");
         sscanf(argv[1], "%d", &size);
         printf("to %d\n", size);
-        if(size >= 200 && size <= 1000)
+        if(size >= 200 && size <= 1200)
             display_size = size;
     }
     al_init();
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     ALLEGRO_PATH *path = al_get_standard_path(ALLEGRO_RESOURCES_PATH);
     al_append_path_component(path, "../resources");
     al_change_directory(al_path_cstr(path, '/'));
-    ALLEGRO_FONT *font = al_load_ttf_font(FONT_NAME, 32, 32);
+    ALLEGRO_FONT *font = al_load_ttf_font(FONT_NAME, 24, 24);
     if(!font) {
         printf("unable to load ttf font:%s (path=%s)\n",FONT_NAME, al_path_cstr(path,'/'));
         return 1;
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
             controller_update(ticks, redraw_rate, burn_rate);
             ticks++;
 
-            y = controller_last_relative_position() * ((float)al_get_display_height(display));
+            y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
         }
         else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;
@@ -104,6 +104,7 @@ int main(int argc, char *argv[])
                 display_color = green;
             }
             al_draw_text(font, display_color, 10, 10, 0, message);
+            al_draw_line(0.0, (float)(display_size-30.0), (float)display_size, (float)(display_size-30.0), al_map_rgb(0,255,5),1.0);
             al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 0, 0));
 
             al_flip_display();
