@@ -71,7 +71,8 @@ int main(int argc, char *argv[])
             redraw = true;
             controller_update(ticks, redraw_rate, burn_rate);
             ticks++;
-            y++;
+
+            y = controller_last_relative_position() * ((float)al_get_display_height(display));
         }
         else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
             break;

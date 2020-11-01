@@ -37,3 +37,5 @@ C - TDD - allegro graphic library
 
 ## 17 - the controller calculates the relative position of the lander in its trajectory to the moon
 
+## 18 - display a red square at a position relative to initial height
+
