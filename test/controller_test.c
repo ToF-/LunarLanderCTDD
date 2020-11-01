@@ -42,3 +42,11 @@ TEST(Controller, CalculatesRelativePositionOfLander)
     TEST_ASSERT_EQUAL_FLOAT(0.06, controller_last_relative_position());
 }
 
+TEST(Controller, ChangesStateMessageIfCrashedOrLanded)
+{
+    controller_init();
+    for(int i; i<1000; i++) {
+        controller_update(i, 1.0, 0.0);
+    }
+    TEST_ASSERT_EQUAL_STRING("STATUS:CRASHED", last_message);
+}

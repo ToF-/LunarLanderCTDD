@@ -9,9 +9,12 @@ void lander_initialize(LANDER *lander)
 
 void lander_update(LANDER * lander, float t, float burn_rate)
 {
-    lander->height += t * lander->velocity;
-    lander->velocity += t * (STRENGTH * burn_rate - GRAVITY);
-    lander->fuel -= t*burn_rate;
+    if(lander_status(*lander)==IN_FLIGHT)
+    {
+        lander->height += t * lander->velocity;
+        lander->velocity += t * (STRENGTH * burn_rate - GRAVITY);
+        lander->fuel -= t*burn_rate;
+    }
 }
 
 int lander_status(LANDER lander)

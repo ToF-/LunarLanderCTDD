@@ -14,8 +14,25 @@ void controller_init()
 
 void display_lander_state()
 {
-    sprintf(state_message, "HEIGHT:%06.1f -- VELOCITY:%05.1f -- FUEL:%04.1f",
-            lander.height, lander.velocity, lander.fuel);
+    switch(lander_status(lander))
+    {
+        case IN_FLIGHT:
+        {
+            sprintf(state_message, "HEIGHT:%06.1f -- VELOCITY:%05.1f -- FUEL:%04.1f",
+                    lander.height, lander.velocity, lander.fuel);
+            break;
+        }
+        case LANDED:
+        {
+            sprintf(state_message, "STATUS:LANDED");
+            break;
+        }
+        case CRASHED:
+        {
+            sprintf(state_message, "STATUS:CRASHED");
+            break;
+        }
+    }
     console_display(state_message);
 }
 void controller_update(unsigned long ticks, float t, float r)

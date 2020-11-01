@@ -67,3 +67,18 @@ TEST(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity)
     lander.velocity = -1.5;
     TEST_ASSERT_EQUAL(CRASHED, lander_status(lander));
 }
+TEST(Trajectory, AfterLandingOrCrashingLanderCantUpdate)
+{
+    LANDER lander;
+    lander_initialize(&lander);
+    lander.height = 0.0;
+    lander.velocity = -0.5;
+    TEST_ASSERT_EQUAL(LANDED, lander_status(lander));
+    float height = lander.height;
+    float velocity = lander.velocity;
+    float fuel = lander.fuel;
+    lander_update(&lander, 2.0, 1.0);
+    TEST_ASSERT_EQUAL_FLOAT(height, lander.height);
+    TEST_ASSERT_EQUAL_FLOAT(velocity, lander.velocity);
+    TEST_ASSERT_EQUAL_FLOAT(fuel, lander.fuel);
+}

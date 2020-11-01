@@ -43,3 +43,7 @@ C - TDD - allegro graphic library
 
 ## 20 - if lander is at height <= 0 with unsafe velocity it has crashed - test first
 
+## 21 - controller changes message if lander landed or crashed - test first
+
+## 22 - after landing or crashing, lander can't be updated
+
