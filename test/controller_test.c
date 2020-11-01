@@ -26,5 +26,5 @@ TEST(Controller, After3SecondsDisplaysLanderState)
     controller_tick(89);
     TEST_ASSERT_EQUAL_STRING("LUNAR LANDING -- READY", last_message);
     controller_tick(90);
-    TEST_ASSERT_EQUAL_STRING("HEIGHT:0050.0 -- VELOCITY:0.0 -- FUEL:00.0", last_message);
+    TEST_ASSERT_EQUAL_STRING("HEIGHT:0050.0 -- VELOCITY:000.0 -- FUEL:20.0", last_message);
 }

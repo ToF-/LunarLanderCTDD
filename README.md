@@ -21,3 +21,5 @@ C - TDD - allegro graphic library
 
 ## 09 - after 3 seconds (90 ticks) the controller displays height, velocity and fuel information - test first
 
+## 10 - the initial state of the lander is height:50, velocity:0, fuel:20 - test first
+

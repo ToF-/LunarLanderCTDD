@@ -1,7 +1,7 @@
 
 UNITY_ROOT=unity
 
-SRC_FILES=$(UNITY_ROOT)/src/unity.c $(UNITY_ROOT)/extras/fixture/src/unity_fixture.c test/controller_test.c test/controller_test_runner.c src/controller.c test/mock_console.c
+SRC_FILES=$(UNITY_ROOT)/src/unity.c $(UNITY_ROOT)/extras/fixture/src/unity_fixture.c test/controller_test.c test/controller_test_runner.c src/controller.c test/mock_console.c test/trajectory_test.c test/trajectory_test_runner.c src/trajectory.c
 
 INC_DIRS=-Isrc -I$(UNITY_ROOT)/src -I$(UNITY_ROOT)/extras/fixture/src -I$(UNITY_ROOT)/extras/memory/src
 

@@ -3,6 +3,7 @@
 static void RunAllTests(void)
 {
     RUN_TEST_GROUP(Controller);
+    RUN_TEST_GROUP(Trajectory);
 }
 
 int main(int argc, const char *argv[])
