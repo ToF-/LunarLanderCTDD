@@ -27,3 +27,7 @@ void controller_update(unsigned long ticks, float t, float r)
     }
 }
 
+float controller_last_relative_position()
+{
+    return (INITIAL_HEIGHT-lander.height) / INITIAL_HEIGHT;
+}

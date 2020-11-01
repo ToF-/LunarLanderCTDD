@@ -35,3 +35,5 @@ C - TDD - allegro graphic library
 
 ## 16 - when the space key is pressed the fuel burn rate is 1 instead of 0
 
+## 17 - the controller calculates the relative position of the lander in its trajectory to the moon
+

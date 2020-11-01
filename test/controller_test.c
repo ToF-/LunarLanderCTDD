@@ -28,3 +28,17 @@ TEST(Controller, After3SecondsDisplaysLanderState)
     controller_update(90, 1.0, 0.0);
     TEST_ASSERT_EQUAL_STRING("HEIGHT:0050.0 -- VELOCITY:-00.5 -- FUEL:20.0", last_message);
 }
+
+TEST(Controller, CalculatesRelativePositionOfLander)
+{
+    controller_init();
+    controller_update(90, 1.0, 0.0);
+    TEST_ASSERT_EQUAL_FLOAT(0.0, controller_last_relative_position());
+    controller_update(91, 1.0, 0.0);
+    TEST_ASSERT_EQUAL_FLOAT(0.01, controller_last_relative_position());
+    controller_update(92, 1.0, 0.0);
+    TEST_ASSERT_EQUAL_FLOAT(0.03, controller_last_relative_position());
+    controller_update(93, 1.0, 0.0);
+    TEST_ASSERT_EQUAL_FLOAT(0.06, controller_last_relative_position());
+}
+
