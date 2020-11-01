@@ -14,3 +14,11 @@ void lander_update(LANDER * lander, float t, float burn_rate)
     lander->fuel -= t*burn_rate;
 }
 
+int lander_status(LANDER lander)
+{
+    if(lander.height > 0.0)
+        return IN_FLIGHT;
+    else 
+        return LANDED;
+}
+

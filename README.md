@@ -39,3 +39,5 @@ C - TDD - allegro graphic library
 
 ## 18 - display a red square at a position relative to initial height
 
+## 19 - if lander is at height <= 0 with safe velocity it has landed - test first
+

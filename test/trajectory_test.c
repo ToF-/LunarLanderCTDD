@@ -50,3 +50,12 @@ TEST(Trajectory, StateAfter2UpdatesWithBurnRate1)
     TEST_ASSERT_EQUAL_FLOAT(1.0, lander.velocity);
     TEST_ASSERT_EQUAL_FLOAT(INITIAL_FUEL-2.0, lander.fuel);
 }
+TEST(Trajectory, StatusWhenHeightIsZeroAndSafeVelocity)
+{
+    LANDER lander;
+    lander_initialize(&lander);
+    TEST_ASSERT_EQUAL(IN_FLIGHT, lander_status(lander));
+    lander.height = 0.0;
+    lander.velocity = -0.5;
+    TEST_ASSERT_EQUAL(LANDED, lander_status(lander));
+}
