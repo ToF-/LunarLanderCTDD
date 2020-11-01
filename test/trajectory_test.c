@@ -40,3 +40,13 @@ TEST(Trajectory, StateAfter2UpdatesWithBurnRate0)
     TEST_ASSERT_EQUAL_FLOAT(-GRAVITY*2, lander.velocity);
     TEST_ASSERT_EQUAL_FLOAT(INITIAL_FUEL, lander.fuel);
 }
+TEST(Trajectory, StateAfter2UpdatesWithBurnRate1)
+{
+    LANDER lander;
+    lander_initialize(&lander);
+    lander_update(&lander, 1.0, 1.0);
+    lander_update(&lander, 1.0, 1.0);
+    TEST_ASSERT_EQUAL_FLOAT(INITIAL_HEIGHT+0.5, lander.height);
+    TEST_ASSERT_EQUAL_FLOAT(1.0, lander.velocity);
+    TEST_ASSERT_EQUAL_FLOAT(INITIAL_FUEL-2.0, lander.fuel);
+}

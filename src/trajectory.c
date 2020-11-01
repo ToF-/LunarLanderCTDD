@@ -11,5 +11,6 @@ void lander_update(LANDER * lander, float t, float burn_rate)
 {
     lander->height += t * lander->velocity;
     lander->velocity += t * (STRENGTH * burn_rate - GRAVITY);
+    lander->fuel -= t*burn_rate;
 }
 
