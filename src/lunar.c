@@ -17,6 +17,7 @@ void console_display(char *s)
 int main(int argc, char *argv[])
 {
     float redraw_rate = REDRAW_RATE;
+    float burn_rate = 0.0;
     int display_size=1000;
     if(argc > 1)
     {
@@ -68,7 +69,7 @@ int main(int argc, char *argv[])
         if(event.type == ALLEGRO_EVENT_TIMER)
         {
             redraw = true;
-            controller_update(ticks, redraw_rate, 0.0);
+            controller_update(ticks, redraw_rate, burn_rate);
             ticks++;
             y++;
         }
@@ -82,6 +83,7 @@ int main(int argc, char *argv[])
         else if(event.type == ALLEGRO_EVENT_KEY_UP)
         {
             key_down = false;
+            burn_rate = 0.0;
         }
         if(redraw && al_event_queue_is_empty(queue))
         {
@@ -89,7 +91,10 @@ int main(int argc, char *argv[])
             if(key_down)
             {
                 if(key_code == ALLEGRO_KEY_SPACE)
+                {   
+                    burn_rate = 1.0;
                     display_color = orange;
+                }
                 else
                     display_color = green;
             }

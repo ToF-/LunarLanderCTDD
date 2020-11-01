@@ -33,3 +33,5 @@ C - TDD - allegro graphic library
 
 ## 15 - with each tick the console displays the updated lander state
 
+## 16 - when the space key is pressed the fuel burn rate is 1 instead of 0
+
