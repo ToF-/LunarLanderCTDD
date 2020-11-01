@@ -23,3 +23,7 @@ C - TDD - allegro graphic library
 
 ## 10 - the initial state of the lander is height:50, velocity:0, fuel:20 - test first
 
+## 11 - after 1 second with burn rate 0, the state of the lander is height:50.0, velocity:-0.5, fuel:20 - test first
+
+## 12 - after 2 uptades of 1 second with burn rate 0 the state of the lander is height:49.5, velocity:-1, fuel:20 - test first
+
