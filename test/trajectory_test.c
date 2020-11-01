@@ -82,3 +82,12 @@ TEST(Trajectory, AfterLandingOrCrashingLanderCantUpdate)
     TEST_ASSERT_EQUAL_FLOAT(velocity, lander.velocity);
     TEST_ASSERT_EQUAL_FLOAT(fuel, lander.fuel);
 }
+TEST(Trajectory, WhenOutOfFuelBurnRateFallsToZeroWhenUpdating)
+{
+    LANDER lander;
+    lander_initialize(&lander);
+    lander.fuel = 0;
+    lander_update(&lander, 1.0, 1.0);
+    lander_update(&lander, 1.0, 1.0);
+    TEST_ASSERT_EQUAL_FLOAT(INITIAL_HEIGHT-GRAVITY, lander.height);
+}

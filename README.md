@@ -47,3 +47,5 @@ C - TDD - allegro graphic library
 
 ## 22 - after landing or crashing, lander can't be updated
 
+## 23 - when out of fuel, burn rate falls to zero when updating
+
