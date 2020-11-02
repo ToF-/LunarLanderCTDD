@@ -49,6 +49,7 @@ int main(int argc, char *argv[])
     al_register_event_source(queue, al_get_display_event_source(display));
     al_register_event_source(queue, al_get_timer_event_source(timer));
 
+    bool quit = false;;
     bool redraw = true;
     bool key_down = false;
     unsigned char key_code;
@@ -63,7 +64,7 @@ int main(int argc, char *argv[])
     
     controller_init();
     al_start_timer(timer);
-    while(true)
+    while(!quit)
     {
         al_wait_for_event(queue, &event);
         if(event.type == ALLEGRO_EVENT_TIMER)
@@ -75,11 +76,28 @@ int main(int argc, char *argv[])
             y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
         }
         else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-            break;
+        {
+            quit = true;
+        }
         else if(event.type == ALLEGRO_EVENT_KEY_DOWN)
         {
             key_down = true;
             key_code = event.keyboard.keycode;
+            display_color = green;
+            if(key_down)
+            {
+                if(key_code == ALLEGRO_KEY_SPACE)
+                {   
+                    burn_rate = 1.0;
+                    display_color = orange;
+                }
+                else if(key_code == ALLEGRO_KEY_ESCAPE)
+                    quit = true;
+            }
+            else
+            {
+                display_color = green;
+            }
         }
         else if(event.type == ALLEGRO_EVENT_KEY_UP)
         {
@@ -89,20 +107,6 @@ int main(int argc, char *argv[])
         if(redraw && al_event_queue_is_empty(queue))
         {
             al_clear_to_color(al_map_rgb(0, 0, 0));
-            if(key_down)
-            {
-                if(key_code == ALLEGRO_KEY_SPACE)
-                {   
-                    burn_rate = 1.0;
-                    display_color = orange;
-                }
-                else
-                    display_color = green;
-            }
-            else
-            {
-                display_color = green;
-            }
             al_draw_text(font, display_color, 10, 10, 0, message);
             al_draw_line(0.0, (float)(display_size-30.0), (float)display_size, (float)(display_size-30.0), al_map_rgb(0,255,5),1.0);
             al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 0, 0));
