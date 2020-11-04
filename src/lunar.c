@@ -108,8 +108,10 @@ int main(int argc, char *argv[])
         {
             al_clear_to_color(al_map_rgb(0, 0, 0));
             al_draw_text(font, display_color, 10, 10, 0, message);
-            al_draw_line(0.0, (float)(display_size-30.0), (float)display_size, (float)(display_size-30.0), al_map_rgb(0,255,5),1.0);
-            al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 0, 0));
+            al_draw_line(0.0, (float)al_get_display_height(display)-20.0, (float)al_get_display_width(display), (float)al_get_display_height(display)-20.0, al_map_rgb(0,255,5),1.0);
+            x = (float)al_get_display_width(display)/2;
+            y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
+            al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 255, 255));
 
             al_flip_display();
             redraw = false;
