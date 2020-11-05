@@ -14,6 +14,7 @@ CC	unity/extras/memory/test/Makefile	/^CC = clang$/;"	m
 CC	unity/extras/memory/test/Makefile	/^CC = gcc$/;"	m
 CHECK	unity/extras/fixture/src/unity_fixture.h	/^#define CHECK(/;"	d
 CONTROLLER	src/point.h	/^} CONTROLLER;$/;"	t	typeref:struct:controller
+CRASHED	src/trajectory.h	/^#define CRASHED /;"	d
 Controller	test/controller_test.c	/^TEST_GROUP(Controller);$/;"	v
 CurrentDetail1	unity/src/unity_internals.h	/^    const char* CurrentDetail1;$/;"	m	struct:UNITY_STORAGE_T
 CurrentDetail2	unity/src/unity_internals.h	/^    const char* CurrentDetail2;$/;"	m	struct:UNITY_STORAGE_T
@@ -25,12 +26,18 @@ CurrentTestStartTime	unity/src/unity_internals.h	/^    UNITY_TIME_TYPE CurrentTe
 CurrentTestStopTime	unity/src/unity_internals.h	/^    UNITY_TIME_TYPE CurrentTestStopTime;$/;"	m	struct:UNITY_STORAGE_T
 DEFINES	unity/extras/memory/test/Makefile	/^DEFINES = -D UNITY_OUTPUT_CHAR=UnityOutputCharSpy_OutputChar$/;"	m
 DOUBLES_EQUAL	unity/extras/fixture/src/unity_fixture.h	/^#define DOUBLES_EQUAL(/;"	d
+Display	src/console.c	/^ALLEGRO_DISPLAY *Display;$/;"	v
+Display_Color	src/console.c	/^ALLEGRO_COLOR Display_Color;$/;"	v
+Display_Size	src/console.c	/^int Display_Size = 1200;$/;"	v
 EXPAND_AND_USE_2ND	unity/extras/memory/test/unity_memory_Test.c	/^#define EXPAND_AND_USE_2ND(/;"	d	file:
 EXPECT_ABORT_BEGIN	unity/extras/memory/test/unity_memory_Test.c	/^#define EXPECT_ABORT_BEGIN /;"	d	file:
 EXPECT_ABORT_END	unity/extras/memory/test/unity_memory_Test.c	/^#define EXPECT_ABORT_END /;"	d	file:
 FAIL	unity/extras/fixture/src/unity_fixture.h	/^#define FAIL(/;"	d
+FONT_NAME	src/console.c	/^#define FONT_NAME /;"	d	file:
 FONT_NAME	src/lunar.c	/^#define FONT_NAME /;"	d	file:
+Font	src/console.c	/^ALLEGRO_FONT *Font;$/;"	v
 GRAVITY	src/trajectory.h	/^#define GRAVITY /;"	d
+Green	src/console.c	/^ALLEGRO_COLOR Green;$/;"	v
 GroupFilter	unity/extras/fixture/src/unity_fixture_internals.h	/^    const char* GroupFilter;$/;"	m	struct:UNITY_FIXTURE_T
 Guard	unity/extras/memory/src/unity_memory.c	/^} Guard;$/;"	t	typeref:struct:GuardBytes	file:
 GuardBytes	unity/extras/memory/src/unity_memory.c	/^typedef struct GuardBytes$/;"	s	file:
@@ -42,7 +49,9 @@ INC_DIRS	makefile	/^INC_DIRS=-Isrc -I$(UNITY_ROOT)\/src -I$(UNITY_ROOT)\/extras\
 INITIAL_FUEL	src/trajectory.h	/^#define INITIAL_FUEL /;"	d
 INITIAL_HEIGHT	src/trajectory.h	/^#define INITIAL_HEIGHT /;"	d
 INITIAL_VELOCITY	src/trajectory.h	/^#define INITIAL_VELOCITY /;"	d
+IN_FLIGHT	src/trajectory.h	/^#define IN_FLIGHT /;"	d
 IsStringInBiggerString	unity/src/unity.c	/^int IsStringInBiggerString(const char* longstring, const char* shortstring)$/;"	f
+LANDED	src/trajectory.h	/^#define LANDED /;"	d
 LANDER	src/trajectory.h	/^} LANDER;$/;"	t	typeref:struct:__anon5
 LIB_FLAGS	makefile	/^LIB_FLAGS=$(shell pkg-config allegro-5 allegro_main-5 allegro_font-5 allegro_ttf-5 allegro_primitives-5 --libs --cflags)$/;"	m
 LONGS_EQUAL	unity/extras/fixture/src/unity_fixture.h	/^#define LONGS_EQUAL(/;"	d
@@ -50,17 +59,22 @@ MALLOC_DONT_FAIL	unity/extras/memory/src/unity_memory.c	/^#define MALLOC_DONT_FA
 MESSAGE_MAX	test/mock_console.h	/^#define MESSAGE_MAX /;"	d
 NameFilter	unity/extras/fixture/src/unity_fixture_internals.h	/^    const char* NameFilter;$/;"	m	struct:UNITY_FIXTURE_T
 NumberOfTests	unity/src/unity_internals.h	/^    UNITY_COUNTER_TYPE NumberOfTests;$/;"	m	struct:UNITY_STORAGE_T
+Orange	src/console.c	/^ALLEGRO_COLOR Orange;$/;"	v
 POINT	src/point.h	/^} POINT;$/;"	t	typeref:struct:point
 PROGMEM	unity/src/unity.c	/^#define PROGMEM$/;"	d	file:
 PointerPair	unity/extras/fixture/src/unity_fixture.c	/^struct PointerPair$/;"	s	file:
+Queue	src/console.c	/^ALLEGRO_EVENT_QUEUE *Queue;$/;"	v
+REDRAW_RATE	src/console.c	/^#define REDRAW_RATE /;"	d	file:
 REDRAW_RATE	src/lunar.c	/^#define REDRAW_RATE /;"	d	file:
 RETURN_IF_FAIL_OR_IGNORE	unity/src/unity.c	/^#define RETURN_IF_FAIL_OR_IGNORE /;"	d	file:
 RUN_TEST	unity/src/unity_internals.h	/^#define RUN_TEST(/;"	d
 RUN_TEST_AT_LINE	unity/src/unity_internals.h	/^#define RUN_TEST_AT_LINE(/;"	d
 RUN_TEST_CASE	unity/extras/fixture/src/unity_fixture.h	/^#define RUN_TEST_CASE(/;"	d
 RUN_TEST_GROUP	unity/extras/fixture/src/unity_fixture.h	/^#define RUN_TEST_GROUP(/;"	d
+Redraw_Rate	src/console.c	/^float Redraw_Rate = REDRAW_RATE;$/;"	v
 RepeatCount	unity/extras/fixture/src/unity_fixture_internals.h	/^    unsigned int RepeatCount;$/;"	m	struct:UNITY_FIXTURE_T
 RunAllTests	test/all_tests.c	/^static void RunAllTests(void)$/;"	f	file:
+SAFE_VELOCITY	src/trajectory.h	/^#define SAFE_VELOCITY /;"	d
 SECOND_PARAM	unity/extras/memory/test/unity_memory_Test.c	/^#define SECOND_PARAM(/;"	d	file:
 SRC	unity/extras/fixture/test/Makefile	/^SRC = ..\/src\/unity_fixture.c \\$/;"	m
 SRC	unity/extras/memory/test/Makefile	/^SRC = ..\/src\/unity_memory.c \\$/;"	m
@@ -72,11 +86,16 @@ TARGET	unity/extras/fixture/test/Makefile	/^TARGET = ..\/build\/fixture_tests.ex
 TARGET	unity/extras/memory/test/Makefile	/^TARGET = ..\/build\/memory_tests.exe$/;"	m
 TEST	test/controller_test.c	/^TEST(Controller, After3SecondsDisplaysLanderState)$/;"	f
 TEST	test/controller_test.c	/^TEST(Controller, CalculatesRelativePositionOfLander)$/;"	f
+TEST	test/controller_test.c	/^TEST(Controller, ChangesStateMessageIfCrashedOrLanded)$/;"	f
 TEST	test/controller_test.c	/^TEST(Controller, DisplaysWhenInitialized)$/;"	f
+TEST	test/trajectory_test.c	/^TEST(Trajectory, AfterLandingOrCrashingLanderCantUpdate)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, InitialState)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, StateAfter1SecondUpdateWithBurnRate0)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, StateAfter2UpdatesWithBurnRate0)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, StateAfter2UpdatesWithBurnRate1)$/;"	f
+TEST	test/trajectory_test.c	/^TEST(Trajectory, StatusWhenHeightIsZeroAndSafeVelocity)$/;"	f
+TEST	test/trajectory_test.c	/^TEST(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity)$/;"	f
+TEST	test/trajectory_test.c	/^TEST(Trajectory, WhenOutOfFuelBurnRateFallsToZeroWhenUpdating)$/;"	f
 TEST	unity/extras/fixture/src/unity_fixture.h	/^#define TEST(/;"	d
 TEST	unity/extras/fixture/test/template_fixture_tests.c	/^TEST(mygroup, test1)$/;"	f
 TEST	unity/extras/fixture/test/template_fixture_tests.c	/^TEST(mygroup, test2)$/;"	f
@@ -570,6 +589,7 @@ TEST_TEAR_DOWN	unity/extras/fixture/test/unity_fixture_Test.c	/^TEST_TEAR_DOWN(U
 TestFailures	unity/src/unity_internals.h	/^    UNITY_COUNTER_TYPE TestFailures;$/;"	m	struct:UNITY_STORAGE_T
 TestFile	unity/src/unity_internals.h	/^    const char* TestFile;$/;"	m	struct:UNITY_STORAGE_T
 TestIgnores	unity/src/unity_internals.h	/^    UNITY_COUNTER_TYPE TestIgnores;$/;"	m	struct:UNITY_STORAGE_T
+Timer	src/console.c	/^ALLEGRO_TIMER *Timer;$/;"	v
 Trajectory	test/trajectory_test.c	/^TEST_GROUP(Trajectory);$/;"	v
 UNITY	unity/src/unity.h	/^#define UNITY$/;"	d
 UNITY_ARRAY_TO_ARRAY	unity/src/unity_internals.h	/^    UNITY_ARRAY_TO_ARRAY,$/;"	e	enum:__anon4
@@ -1026,14 +1046,21 @@ UnityTestRunner	unity/extras/fixture/src/unity_fixture.c	/^void UnityTestRunner(
 UnityVerbosity	unity/src/unity.c	/^int UnityVerbosity            = 1;$/;"	v
 VAL_UnityOutputCharSpy_OutputChar	unity/extras/memory/test/unity_memory_Test.c	/^#define VAL_UnityOutputCharSpy_OutputChar /;"	d	file:
 Verbose	unity/extras/fixture/src/unity_fixture_internals.h	/^    int Verbose;$/;"	m	struct:UNITY_FIXTURE_T
+X_Lander	src/console.c	/^float X_Lander, Y_Lander;$/;"	v
+Y_Lander	src/console.c	/^float X_Lander, Y_Lander;$/;"	v
 announceTestRun	unity/extras/fixture/src/unity_fixture.c	/^static void announceTestRun(unsigned int runNumber)$/;"	f	file:
 buffer	unity/extras/memory/test/unity_output_Spy.c	/^static char* buffer;$/;"	v	file:
 calloc	unity/extras/memory/src/unity_memory.c	/^#undef calloc$/;"	d	file:
 calloc	unity/extras/memory/src/unity_memory.h	/^#define calloc /;"	d
+console_destroy	src/console.c	/^void console_destroy()$/;"	f
+console_display	src/console.c	/^void console_display(char *s)$/;"	f
 console_display	src/lunar.c	/^void console_display(char *s)$/;"	f
 console_display	test/mock_console.c	/^void console_display(char *message)$/;"	f
+console_init	src/console.c	/^int console_init()$/;"	f
+console_redraw	src/console.c	/^void console_redraw()$/;"	f
 controller	src/point.h	/^typedef struct controller {$/;"	s
 controller_init	src/controller.c	/^void controller_init()$/;"	f
+controller_last_relative_position	src/controller.c	/^float controller_last_relative_position()$/;"	f
 controller_update	src/controller.c	/^void controller_update(unsigned long ticks, float t, float r)$/;"	f
 count	unity/extras/memory/test/unity_output_Spy.c	/^static int count;$/;"	v	file:
 d	unity/src/unity.c	/^    double d;$/;"	m	union:__anon1	file:
@@ -1045,6 +1072,7 @@ f	unity/src/unity.c	/^    float f;$/;"	m	union:__anon1	file:
 free	unity/extras/memory/src/unity_memory.c	/^#undef free$/;"	d	file:
 free	unity/extras/memory/src/unity_memory.h	/^#define free /;"	d
 fuel	src/trajectory.h	/^    float fuel;$/;"	m	struct:__anon5
+game_loop	src/console.c	/^int game_loop(int argc, char *argv[])$/;"	f
 group	unity/extras/fixture/test/unity_fixture_Test.c	/^static const char* group[] = {$/;"	v	file:
 groupSelected	unity/extras/fixture/src/unity_fixture.c	/^static int groupSelected(const char* group)$/;"	f	file:
 guard_space	unity/extras/memory/src/unity_memory.c	/^    size_t guard_space;$/;"	m	struct:GuardBytes	file:
@@ -1063,9 +1091,9 @@ isinf	unity/src/unity_internals.h	/^#define isinf(/;"	d
 isnan	unity/src/unity_internals.h	/^#define isnan(/;"	d
 lander	src/controller.c	/^static LANDER lander;$/;"	v	file:
 lander_initialize	src/trajectory.c	/^void lander_initialize(LANDER *lander)$/;"	f
+lander_status	src/trajectory.c	/^int lander_status(LANDER lander)$/;"	f
 lander_update	src/trajectory.c	/^void lander_update(LANDER * lander, float t, float burn_rate)$/;"	f
 last_message	test/mock_console.h	/^char last_message[MESSAGE_MAX];$/;"	v
-main	src/console.c	/^int main() {$/;"	f
 main	src/lunar.c	/^int main(int argc, char *argv[])$/;"	f
 main	test/all_tests.c	/^int main(int argc, const char *argv[])$/;"	f
 main	unity/extras/fixture/test/main/AllTests.c	/^int main(int argc, const char* argv[])$/;"	f

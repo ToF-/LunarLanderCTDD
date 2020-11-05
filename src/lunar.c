@@ -14,6 +14,21 @@ void console_display(char *s)
     sprintf(message, "%s", s);
 
 }
+
+void console_redraw(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
+{
+    float x,y;
+    ALLEGRO_COLOR display_color = al_map_rgb(0, 255, 0);
+    
+    al_clear_to_color(al_map_rgb(0, 0, 0));
+    al_draw_text(font, display_color, 10, 10, 0, message);
+    al_draw_line(0.0, (float)al_get_display_height(display)-20.0, (float)al_get_display_width(display), (float)al_get_display_height(display)-20.0, al_map_rgb(0,255,5),1.0);
+    x = (float)al_get_display_width(display)/2;
+    y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
+    al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 255, 255));
+
+    al_flip_display();
+}
 int main(int argc, char *argv[])
 {
     float redraw_rate = REDRAW_RATE;
@@ -58,62 +73,46 @@ int main(int argc, char *argv[])
     x = (float)al_get_display_width(display)/2;
     y = (float)al_get_display_height(display)/5;
     ALLEGRO_EVENT event;
-    ALLEGRO_COLOR green = al_map_rgb(0, 255, 0);
-    ALLEGRO_COLOR orange = al_map_rgb(255,127, 0);
-    ALLEGRO_COLOR display_color = green;
     
     controller_init();
     al_start_timer(timer);
     while(!quit)
     {
         al_wait_for_event(queue, &event);
-        if(event.type == ALLEGRO_EVENT_TIMER)
+        switch(event.type) 
         {
-            redraw = true;
-            controller_update(ticks, redraw_rate, burn_rate);
-            ticks++;
-
-            y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
-        }
-        else if(event.type == ALLEGRO_EVENT_DISPLAY_CLOSE)
-        {
-            quit = true;
-        }
-        else if(event.type == ALLEGRO_EVENT_KEY_DOWN)
-        {
-            key_down = true;
-            key_code = event.keyboard.keycode;
-            display_color = green;
-            if(key_down)
+            case ALLEGRO_EVENT_TIMER:
             {
+                controller_update(ticks, redraw_rate, burn_rate);
+                ticks++;
+                redraw = true;
+                break;
+            }
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+            {
+                quit = true;
+                break;
+            }
+            case ALLEGRO_EVENT_KEY_DOWN:
+            {
+                key_code = event.keyboard.keycode;
                 if(key_code == ALLEGRO_KEY_SPACE)
-                {   
                     burn_rate = 1.0;
-                    display_color = orange;
-                }
                 else if(key_code == ALLEGRO_KEY_ESCAPE)
                     quit = true;
+                break;
             }
-            else
+            case ALLEGRO_EVENT_KEY_UP:
             {
-                display_color = green;
+
+                key_down = false;
+                burn_rate = 0.0;
             }
-        }
-        else if(event.type == ALLEGRO_EVENT_KEY_UP)
-        {
-            key_down = false;
-            burn_rate = 0.0;
+            break;
         }
         if(redraw && al_event_queue_is_empty(queue))
         {
-            al_clear_to_color(al_map_rgb(0, 0, 0));
-            al_draw_text(font, display_color, 10, 10, 0, message);
-            al_draw_line(0.0, (float)al_get_display_height(display)-20.0, (float)al_get_display_width(display), (float)al_get_display_height(display)-20.0, al_map_rgb(0,255,5),1.0);
-            x = (float)al_get_display_width(display)/2;
-            y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
-            al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 255, 255));
-
-            al_flip_display();
+            console_redraw(display, font);
             redraw = false;
         }
     }
