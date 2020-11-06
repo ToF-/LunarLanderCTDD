@@ -62,35 +62,19 @@ void console_exit(ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, ALLEGRO_TIMER *t
     al_destroy_timer(timer);
     al_destroy_event_queue(queue);
 }
-int main(int argc, char *argv[])
-{
-    ALLEGRO_FONT *font;
-    ALLEGRO_TIMER *timer;
-    ALLEGRO_EVENT_QUEUE *queue;
-    ALLEGRO_DISPLAY *display;
-    float burn_rate = 0.0;
-    if(argc > 1)
-    {
-        int size;
-        sscanf(argv[1], "%d", &size);
-        if(size >= 200 && size <= 1200)
-            Display_Size = size;
-    }
-    
-    int exit_code = console_init(&font, &display, &timer, &queue);
-    if(exit_code)         
-        return exit_code;
 
-    bool quit = false;;
+void console_loop(ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, ALLEGRO_TIMER *timer, ALLEGRO_EVENT_QUEUE *queue)
+{
+    ALLEGRO_EVENT event;
+    bool quit = false;
     bool redraw = true;
     bool key_down = false;
     unsigned char key_code;
     unsigned long ticks=0;
+    float burn_rate = 0.0;
     float x,y;
     x = (float)al_get_display_width(display)/2;
     y = (float)al_get_display_height(display)/5;
-    ALLEGRO_EVENT event;
-    controller_init();
     al_start_timer(timer);
     while(!quit)
     {
@@ -132,6 +116,26 @@ int main(int argc, char *argv[])
             redraw = false;
         }
     }
+}
+int main(int argc, char *argv[])
+{
+    ALLEGRO_FONT *font;
+    ALLEGRO_TIMER *timer;
+    ALLEGRO_EVENT_QUEUE *queue;
+    ALLEGRO_DISPLAY *display;
+    if(argc > 1)
+    {
+        int size;
+        sscanf(argv[1], "%d", &size);
+        if(size >= 200 && size <= 1200)
+            Display_Size = size;
+    }
+    int exit_code = console_init(&font, &display, &timer, &queue);
+    if(exit_code)
+        return exit_code;
+
+    controller_init();
+    console_loop(font, display, timer, queue);
     console_exit(font, display, timer, queue);
 
     return 0;
