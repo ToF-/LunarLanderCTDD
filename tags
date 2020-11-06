@@ -26,18 +26,13 @@ CurrentTestStartTime	unity/src/unity_internals.h	/^    UNITY_TIME_TYPE CurrentTe
 CurrentTestStopTime	unity/src/unity_internals.h	/^    UNITY_TIME_TYPE CurrentTestStopTime;$/;"	m	struct:UNITY_STORAGE_T
 DEFINES	unity/extras/memory/test/Makefile	/^DEFINES = -D UNITY_OUTPUT_CHAR=UnityOutputCharSpy_OutputChar$/;"	m
 DOUBLES_EQUAL	unity/extras/fixture/src/unity_fixture.h	/^#define DOUBLES_EQUAL(/;"	d
-Display	src/console.c	/^ALLEGRO_DISPLAY *Display;$/;"	v
-Display_Color	src/console.c	/^ALLEGRO_COLOR Display_Color;$/;"	v
-Display_Size	src/console.c	/^int Display_Size = 1200;$/;"	v
+Display_Size	src/lunar.c	/^int Display_Size = 1200;$/;"	v
 EXPAND_AND_USE_2ND	unity/extras/memory/test/unity_memory_Test.c	/^#define EXPAND_AND_USE_2ND(/;"	d	file:
 EXPECT_ABORT_BEGIN	unity/extras/memory/test/unity_memory_Test.c	/^#define EXPECT_ABORT_BEGIN /;"	d	file:
 EXPECT_ABORT_END	unity/extras/memory/test/unity_memory_Test.c	/^#define EXPECT_ABORT_END /;"	d	file:
 FAIL	unity/extras/fixture/src/unity_fixture.h	/^#define FAIL(/;"	d
-FONT_NAME	src/console.c	/^#define FONT_NAME /;"	d	file:
 FONT_NAME	src/lunar.c	/^#define FONT_NAME /;"	d	file:
-Font	src/console.c	/^ALLEGRO_FONT *Font;$/;"	v
 GRAVITY	src/trajectory.h	/^#define GRAVITY /;"	d
-Green	src/console.c	/^ALLEGRO_COLOR Green;$/;"	v
 GroupFilter	unity/extras/fixture/src/unity_fixture_internals.h	/^    const char* GroupFilter;$/;"	m	struct:UNITY_FIXTURE_T
 Guard	unity/extras/memory/src/unity_memory.c	/^} Guard;$/;"	t	typeref:struct:GuardBytes	file:
 GuardBytes	unity/extras/memory/src/unity_memory.c	/^typedef struct GuardBytes$/;"	s	file:
@@ -52,26 +47,24 @@ INITIAL_VELOCITY	src/trajectory.h	/^#define INITIAL_VELOCITY /;"	d
 IN_FLIGHT	src/trajectory.h	/^#define IN_FLIGHT /;"	d
 IsStringInBiggerString	unity/src/unity.c	/^int IsStringInBiggerString(const char* longstring, const char* shortstring)$/;"	f
 LANDED	src/trajectory.h	/^#define LANDED /;"	d
-LANDER	src/trajectory.h	/^} LANDER;$/;"	t	typeref:struct:__anon5
+LANDER	src/trajectory.h	/^} LANDER;$/;"	t	typeref:struct:__anon1
 LIB_FLAGS	makefile	/^LIB_FLAGS=$(shell pkg-config allegro-5 allegro_main-5 allegro_font-5 allegro_ttf-5 allegro_primitives-5 --libs --cflags)$/;"	m
 LONGS_EQUAL	unity/extras/fixture/src/unity_fixture.h	/^#define LONGS_EQUAL(/;"	d
 MALLOC_DONT_FAIL	unity/extras/memory/src/unity_memory.c	/^#define MALLOC_DONT_FAIL /;"	d	file:
 MESSAGE_MAX	test/mock_console.h	/^#define MESSAGE_MAX /;"	d
+NO_FUEL	src/trajectory.h	/^#define NO_FUEL /;"	d
 NameFilter	unity/extras/fixture/src/unity_fixture_internals.h	/^    const char* NameFilter;$/;"	m	struct:UNITY_FIXTURE_T
 NumberOfTests	unity/src/unity_internals.h	/^    UNITY_COUNTER_TYPE NumberOfTests;$/;"	m	struct:UNITY_STORAGE_T
-Orange	src/console.c	/^ALLEGRO_COLOR Orange;$/;"	v
 POINT	src/point.h	/^} POINT;$/;"	t	typeref:struct:point
 PROGMEM	unity/src/unity.c	/^#define PROGMEM$/;"	d	file:
 PointerPair	unity/extras/fixture/src/unity_fixture.c	/^struct PointerPair$/;"	s	file:
-Queue	src/console.c	/^ALLEGRO_EVENT_QUEUE *Queue;$/;"	v
-REDRAW_RATE	src/console.c	/^#define REDRAW_RATE /;"	d	file:
 REDRAW_RATE	src/lunar.c	/^#define REDRAW_RATE /;"	d	file:
 RETURN_IF_FAIL_OR_IGNORE	unity/src/unity.c	/^#define RETURN_IF_FAIL_OR_IGNORE /;"	d	file:
 RUN_TEST	unity/src/unity_internals.h	/^#define RUN_TEST(/;"	d
 RUN_TEST_AT_LINE	unity/src/unity_internals.h	/^#define RUN_TEST_AT_LINE(/;"	d
 RUN_TEST_CASE	unity/extras/fixture/src/unity_fixture.h	/^#define RUN_TEST_CASE(/;"	d
 RUN_TEST_GROUP	unity/extras/fixture/src/unity_fixture.h	/^#define RUN_TEST_GROUP(/;"	d
-Redraw_Rate	src/console.c	/^float Redraw_Rate = REDRAW_RATE;$/;"	v
+Redraw_Rate	src/lunar.c	/^float Redraw_Rate = REDRAW_RATE;$/;"	v
 RepeatCount	unity/extras/fixture/src/unity_fixture_internals.h	/^    unsigned int RepeatCount;$/;"	m	struct:UNITY_FIXTURE_T
 RunAllTests	test/all_tests.c	/^static void RunAllTests(void)$/;"	f	file:
 SAFE_VELOCITY	src/trajectory.h	/^#define SAFE_VELOCITY /;"	d
@@ -88,6 +81,8 @@ TEST	test/controller_test.c	/^TEST(Controller, After3SecondsDisplaysLanderState)
 TEST	test/controller_test.c	/^TEST(Controller, CalculatesRelativePositionOfLander)$/;"	f
 TEST	test/controller_test.c	/^TEST(Controller, ChangesStateMessageIfCrashedOrLanded)$/;"	f
 TEST	test/controller_test.c	/^TEST(Controller, DisplaysWhenInitialized)$/;"	f
+TEST	test/controller_test.c	/^TEST(Controller, GetLanderStatus)$/;"	f
+TEST	test/controller_test.c	/^TEST(Controller, InTheFirst3SecondsDisplaysWarningMessage)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, AfterLandingOrCrashingLanderCantUpdate)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, InitialState)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, StateAfter1SecondUpdateWithBurnRate0)$/;"	f
@@ -96,6 +91,7 @@ TEST	test/trajectory_test.c	/^TEST(Trajectory, StateAfter2UpdatesWithBurnRate1)$
 TEST	test/trajectory_test.c	/^TEST(Trajectory, StatusWhenHeightIsZeroAndSafeVelocity)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity)$/;"	f
 TEST	test/trajectory_test.c	/^TEST(Trajectory, WhenOutOfFuelBurnRateFallsToZeroWhenUpdating)$/;"	f
+TEST	test/trajectory_test.c	/^TEST(Trajectory, WhenOutOfFuelStatusIsNO_FUEL)$/;"	f
 TEST	unity/extras/fixture/src/unity_fixture.h	/^#define TEST(/;"	d
 TEST	unity/extras/fixture/test/template_fixture_tests.c	/^TEST(mygroup, test1)$/;"	f
 TEST	unity/extras/fixture/test/template_fixture_tests.c	/^TEST(mygroup, test2)$/;"	f
@@ -589,15 +585,14 @@ TEST_TEAR_DOWN	unity/extras/fixture/test/unity_fixture_Test.c	/^TEST_TEAR_DOWN(U
 TestFailures	unity/src/unity_internals.h	/^    UNITY_COUNTER_TYPE TestFailures;$/;"	m	struct:UNITY_STORAGE_T
 TestFile	unity/src/unity_internals.h	/^    const char* TestFile;$/;"	m	struct:UNITY_STORAGE_T
 TestIgnores	unity/src/unity_internals.h	/^    UNITY_COUNTER_TYPE TestIgnores;$/;"	m	struct:UNITY_STORAGE_T
-Timer	src/console.c	/^ALLEGRO_TIMER *Timer;$/;"	v
 Trajectory	test/trajectory_test.c	/^TEST_GROUP(Trajectory);$/;"	v
 UNITY	unity/src/unity.h	/^#define UNITY$/;"	d
-UNITY_ARRAY_TO_ARRAY	unity/src/unity_internals.h	/^    UNITY_ARRAY_TO_ARRAY,$/;"	e	enum:__anon4
-UNITY_ARRAY_TO_VAL	unity/src/unity_internals.h	/^    UNITY_ARRAY_TO_VAL = 0,$/;"	e	enum:__anon4
-UNITY_ARRAY_UNKNOWN	unity/src/unity_internals.h	/^    UNITY_ARRAY_UNKNOWN$/;"	e	enum:__anon4
+UNITY_ARRAY_TO_ARRAY	unity/src/unity_internals.h	/^    UNITY_ARRAY_TO_ARRAY,$/;"	e	enum:__anon5
+UNITY_ARRAY_TO_VAL	unity/src/unity_internals.h	/^    UNITY_ARRAY_TO_VAL = 0,$/;"	e	enum:__anon5
+UNITY_ARRAY_UNKNOWN	unity/src/unity_internals.h	/^    UNITY_ARRAY_UNKNOWN$/;"	e	enum:__anon5
 UNITY_BEGIN	unity/src/unity_internals.h	/^#define UNITY_BEGIN(/;"	d
 UNITY_CLR_DETAILS	unity/src/unity_internals.h	/^#define UNITY_CLR_DETAILS(/;"	d
-UNITY_COMPARISON_T	unity/src/unity_internals.h	/^} UNITY_COMPARISON_T;$/;"	t	typeref:enum:__anon3
+UNITY_COMPARISON_T	unity/src/unity_internals.h	/^} UNITY_COMPARISON_T;$/;"	t	typeref:enum:__anon4
 UNITY_COUNTER_TYPE	unity/src/unity_internals.h	/^#define UNITY_COUNTER_TYPE /;"	d
 UNITY_DETAIL1_NAME	unity/src/unity_internals.h	/^#define UNITY_DETAIL1_NAME /;"	d
 UNITY_DETAIL2_NAME	unity/src/unity_internals.h	/^#define UNITY_DETAIL2_NAME /;"	d
@@ -605,31 +600,31 @@ UNITY_DISPLAY_RANGE_CHAR	unity/src/unity_internals.h	/^#define UNITY_DISPLAY_RAN
 UNITY_DISPLAY_RANGE_HEX	unity/src/unity_internals.h	/^#define UNITY_DISPLAY_RANGE_HEX /;"	d
 UNITY_DISPLAY_RANGE_INT	unity/src/unity_internals.h	/^#define UNITY_DISPLAY_RANGE_INT /;"	d
 UNITY_DISPLAY_RANGE_UINT	unity/src/unity_internals.h	/^#define UNITY_DISPLAY_RANGE_UINT /;"	d
-UNITY_DISPLAY_STYLE_CHAR	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_CHAR     = 1 + UNITY_DISPLAY_RANGE_CHAR + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_HEX16	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_HEX16    = 2 + UNITY_DISPLAY_RANGE_HEX,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_HEX32	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_HEX32    = 4 + UNITY_DISPLAY_RANGE_HEX,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_HEX64	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_HEX64    = 8 + UNITY_DISPLAY_RANGE_HEX,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_HEX8	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_HEX8     = 1 + UNITY_DISPLAY_RANGE_HEX,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_INT	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT      = (UNITY_INT_WIDTH \/ 8) + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_INT16	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT16    = 2 + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_INT32	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT32    = 4 + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_INT64	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT64    = 8 + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_INT8	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT8     = 1 + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon2
+UNITY_DISPLAY_STYLE_CHAR	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_CHAR     = 1 + UNITY_DISPLAY_RANGE_CHAR + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_HEX16	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_HEX16    = 2 + UNITY_DISPLAY_RANGE_HEX,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_HEX32	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_HEX32    = 4 + UNITY_DISPLAY_RANGE_HEX,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_HEX64	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_HEX64    = 8 + UNITY_DISPLAY_RANGE_HEX,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_HEX8	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_HEX8     = 1 + UNITY_DISPLAY_RANGE_HEX,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_INT	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT      = (UNITY_INT_WIDTH \/ 8) + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_INT16	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT16    = 2 + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_INT32	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT32    = 4 + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_INT64	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT64    = 8 + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_INT8	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_INT8     = 1 + UNITY_DISPLAY_RANGE_INT,$/;"	e	enum:__anon3
 UNITY_DISPLAY_STYLE_POINTER	unity/src/unity_internals.h	/^  #define UNITY_DISPLAY_STYLE_POINTER /;"	d
-UNITY_DISPLAY_STYLE_T	unity/src/unity_internals.h	/^} UNITY_DISPLAY_STYLE_T;$/;"	t	typeref:enum:__anon2
-UNITY_DISPLAY_STYLE_UINT	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT     = (UNITY_INT_WIDTH \/ 8) + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_UINT16	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT16   = 2 + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_UINT32	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT32   = 4 + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_UINT64	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT64   = 8 + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_UINT8	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT8    = 1 + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon2
-UNITY_DISPLAY_STYLE_UNKNOWN	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UNKNOWN$/;"	e	enum:__anon2
+UNITY_DISPLAY_STYLE_T	unity/src/unity_internals.h	/^} UNITY_DISPLAY_STYLE_T;$/;"	t	typeref:enum:__anon3
+UNITY_DISPLAY_STYLE_UINT	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT     = (UNITY_INT_WIDTH \/ 8) + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_UINT16	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT16   = 2 + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_UINT32	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT32   = 4 + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_UINT64	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT64   = 8 + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_UINT8	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UINT8    = 1 + UNITY_DISPLAY_RANGE_UINT,$/;"	e	enum:__anon3
+UNITY_DISPLAY_STYLE_UNKNOWN	unity/src/unity_internals.h	/^    UNITY_DISPLAY_STYLE_UNKNOWN$/;"	e	enum:__anon3
 UNITY_DOUBLE	unity/src/unity_internals.h	/^  typedef UNITY_DOUBLE_TYPE UNITY_DOUBLE;$/;"	t
 UNITY_DOUBLE	unity/src/unity_internals.h	/^  typedef UNITY_FLOAT UNITY_DOUBLE;$/;"	t
 UNITY_DOUBLE_PRECISION	unity/src/unity_internals.h	/^  #define UNITY_DOUBLE_PRECISION /;"	d
 UNITY_DOUBLE_TYPE	unity/src/unity_internals.h	/^    #define UNITY_DOUBLE_TYPE /;"	d
 UNITY_DOUBLE_TYPE	unity/src/unity_internals.h	/^  #define UNITY_DOUBLE_TYPE /;"	d
 UNITY_END	unity/src/unity_internals.h	/^#define UNITY_END(/;"	d
-UNITY_EQUAL_TO	unity/src/unity_internals.h	/^    UNITY_EQUAL_TO         = 0x1,$/;"	e	enum:__anon3
+UNITY_EQUAL_TO	unity/src/unity_internals.h	/^    UNITY_EQUAL_TO         = 0x1,$/;"	e	enum:__anon4
 UNITY_EXCLUDE_DOUBLE	unity/src/unity_internals.h	/^  #define UNITY_EXCLUDE_DOUBLE$/;"	d
 UNITY_EXCLUDE_DOUBLE	unity/src/unity_internals.h	/^#define UNITY_EXCLUDE_DOUBLE /;"	d
 UNITY_EXCLUDE_FLOAT_PRINT	unity/src/unity_internals.h	/^#define UNITY_EXCLUDE_FLOAT_PRINT$/;"	d
@@ -641,7 +636,7 @@ UNITY_FAIL_AND_BAIL	unity/src/unity.c	/^#define UNITY_FAIL_AND_BAIL /;"	d	file:
 UNITY_FIXTURE_H_	unity/extras/fixture/src/unity_fixture.h	/^#define UNITY_FIXTURE_H_$/;"	d
 UNITY_FIXTURE_INTERNALS_H_	unity/extras/fixture/src/unity_fixture_internals.h	/^#define UNITY_FIXTURE_INTERNALS_H_$/;"	d
 UNITY_FIXTURE_T	unity/extras/fixture/src/unity_fixture_internals.h	/^struct UNITY_FIXTURE_T$/;"	s
-UNITY_FLAGS_T	unity/src/unity_internals.h	/^} UNITY_FLAGS_T;$/;"	t	typeref:enum:__anon4
+UNITY_FLAGS_T	unity/src/unity_internals.h	/^} UNITY_FLAGS_T;$/;"	t	typeref:enum:__anon5
 UNITY_FLOAT	unity/src/unity_internals.h	/^typedef UNITY_FLOAT_TYPE UNITY_FLOAT;$/;"	t
 UNITY_FLOAT_INVALID_TRAIT	unity/src/unity_internals.h	/^    UNITY_FLOAT_INVALID_TRAIT$/;"	e	enum:UNITY_FLOAT_TRAIT
 UNITY_FLOAT_IS_DET	unity/src/unity_internals.h	/^    UNITY_FLOAT_IS_DET,$/;"	e	enum:UNITY_FLOAT_TRAIT
@@ -662,8 +657,8 @@ UNITY_FRAMEWORK_H	unity/src/unity.h	/^#define UNITY_FRAMEWORK_H$/;"	d
 UNITY_FREE	unity/extras/memory/src/unity_memory.h	/^    #define UNITY_FREE(/;"	d
 UNITY_FUNCTION_ATTR	unity/src/unity_internals.h	/^#    define UNITY_FUNCTION_ATTR(/;"	d
 UNITY_GET_TIME	unity/src/unity_internals.h	/^      #define UNITY_GET_TIME(/;"	d
-UNITY_GREATER_OR_EQUAL	unity/src/unity_internals.h	/^    UNITY_GREATER_OR_EQUAL = 0x2 + UNITY_EQUAL_TO,$/;"	e	enum:__anon3
-UNITY_GREATER_THAN	unity/src/unity_internals.h	/^    UNITY_GREATER_THAN     = 0x2,$/;"	e	enum:__anon3
+UNITY_GREATER_OR_EQUAL	unity/src/unity_internals.h	/^    UNITY_GREATER_OR_EQUAL = 0x2 + UNITY_EQUAL_TO,$/;"	e	enum:__anon4
+UNITY_GREATER_THAN	unity/src/unity_internals.h	/^    UNITY_GREATER_THAN     = 0x2,$/;"	e	enum:__anon4
 UNITY_IGNORE_AND_BAIL	unity/src/unity.c	/^#define UNITY_IGNORE_AND_BAIL /;"	d	file:
 UNITY_INCLUDE_DOUBLE	unity/src/unity_internals.h	/^    #undef UNITY_INCLUDE_DOUBLE$/;"	d
 UNITY_INT	unity/src/unity_internals.h	/^    typedef UNITY_INT32  UNITY_INT;$/;"	t
@@ -690,7 +685,7 @@ UNITY_MAX_POINTERS	unity/extras/fixture/src/unity_fixture_internals.h	/^#define 
 UNITY_MEMORY_OVERRIDES_H_	unity/extras/memory/src/unity_memory.h	/^#define UNITY_MEMORY_OVERRIDES_H_$/;"	d
 UNITY_NAN_CHECK	unity/src/unity.c	/^  #define UNITY_NAN_CHECK /;"	d	file:
 UNITY_NEW_TEST	unity/src/unity_internals.h	/^#define UNITY_NEW_TEST(/;"	d
-UNITY_NOT_EQUAL	unity/src/unity_internals.h	/^    UNITY_NOT_EQUAL        = 0x0,$/;"	e	enum:__anon3
+UNITY_NOT_EQUAL	unity/src/unity_internals.h	/^    UNITY_NOT_EQUAL        = 0x0,$/;"	e	enum:__anon4
 UNITY_OUTPUT_CHAR	unity/src/unity_internals.h	/^  #define UNITY_OUTPUT_CHAR(/;"	d
 UNITY_OUTPUT_COMPLETE	unity/src/unity_internals.h	/^#define UNITY_OUTPUT_COMPLETE(/;"	d
 UNITY_OUTPUT_FLUSH	unity/src/unity_internals.h	/^    #define UNITY_OUTPUT_FLUSH(/;"	d
@@ -709,8 +704,8 @@ UNITY_SET_DETAIL	unity/src/unity_internals.h	/^#define UNITY_SET_DETAIL(/;"	d
 UNITY_SET_DETAILS	unity/src/unity_internals.h	/^#define UNITY_SET_DETAILS(/;"	d
 UNITY_SHORTHAND_AS_OLD	unity/src/unity_internals.h	/^#define UNITY_SHORTHAND_AS_OLD$/;"	d
 UNITY_SKIP_DEFAULT_RUNNER	unity/src/unity_internals.h	/^#define UNITY_SKIP_DEFAULT_RUNNER$/;"	d
-UNITY_SMALLER_OR_EQUAL	unity/src/unity_internals.h	/^    UNITY_SMALLER_OR_EQUAL = 0x4 + UNITY_EQUAL_TO,$/;"	e	enum:__anon3
-UNITY_SMALLER_THAN	unity/src/unity_internals.h	/^    UNITY_SMALLER_THAN     = 0x4,$/;"	e	enum:__anon3
+UNITY_SMALLER_OR_EQUAL	unity/src/unity_internals.h	/^    UNITY_SMALLER_OR_EQUAL = 0x4 + UNITY_EQUAL_TO,$/;"	e	enum:__anon4
+UNITY_SMALLER_THAN	unity/src/unity_internals.h	/^    UNITY_SMALLER_THAN     = 0x4,$/;"	e	enum:__anon4
 UNITY_STORAGE_T	unity/src/unity_internals.h	/^struct UNITY_STORAGE_T$/;"	s
 UNITY_SUPPORT_64	unity/src/unity_internals.h	/^    #define UNITY_SUPPORT_64$/;"	d
 UNITY_SUPPORT_VARIADIC_MACROS	unity/src/unity_internals.h	/^#define UNITY_SUPPORT_VARIADIC_MACROS$/;"	d
@@ -917,12 +912,12 @@ UNITY_UINT32	unity/src/unity_internals.h	/^    typedef unsigned long   UNITY_UIN
 UNITY_UINT64	unity/src/unity_internals.h	/^    typedef unsigned long      UNITY_UINT64;$/;"	t
 UNITY_UINT64	unity/src/unity_internals.h	/^    typedef unsigned long long UNITY_UINT64;$/;"	t
 UNITY_UINT8	unity/src/unity_internals.h	/^    typedef unsigned char   UNITY_UINT8;$/;"	t
-UNITY_UNKNOWN	unity/src/unity_internals.h	/^    UNITY_UNKNOWN$/;"	e	enum:__anon3
+UNITY_UNKNOWN	unity/src/unity_internals.h	/^    UNITY_UNKNOWN$/;"	e	enum:__anon4
 UNITY_VERSION	unity/src/unity.h	/^#define UNITY_VERSION /;"	d
 UNITY_VERSION_BUILD	unity/src/unity.h	/^#define UNITY_VERSION_BUILD /;"	d
 UNITY_VERSION_MAJOR	unity/src/unity.h	/^#define UNITY_VERSION_MAJOR /;"	d
 UNITY_VERSION_MINOR	unity/src/unity.h	/^#define UNITY_VERSION_MINOR /;"	d
-UNITY_WITHIN	unity/src/unity_internals.h	/^    UNITY_WITHIN           = 0x0,$/;"	e	enum:__anon3
+UNITY_WITHIN	unity/src/unity_internals.h	/^    UNITY_WITHIN           = 0x0,$/;"	e	enum:__anon4
 USING_OUTPUT_SPY	unity/extras/memory/test/unity_memory_Test.c	/^  #define USING_OUTPUT_SPY /;"	d	file:
 USING_OUTPUT_SPY	unity/extras/memory/test/unity_memory_Test.c	/^  #define USING_OUTPUT_SPY$/;"	d	file:
 USING_SPY_AS	unity/extras/memory/test/unity_memory_Test.c	/^#define USING_SPY_AS(/;"	d	file:
@@ -996,7 +991,7 @@ UnityPrintNumberByStyle	unity/src/unity.c	/^void UnityPrintNumberByStyle(const U
 UnityPrintNumberHex	unity/src/unity.c	/^void UnityPrintNumberHex(const UNITY_UINT number, const char nibbles_to_print)$/;"	f
 UnityPrintNumberUnsigned	unity/src/unity.c	/^void UnityPrintNumberUnsigned(const UNITY_UINT number)$/;"	f
 UnityPrintPointlessAndBail	unity/src/unity.c	/^#define UnityPrintPointlessAndBail(/;"	d	file:
-UnityQuickCompare	unity/src/unity.c	/^} UnityQuickCompare;$/;"	v	typeref:union:__anon1	file:
+UnityQuickCompare	unity/src/unity.c	/^} UnityQuickCompare;$/;"	v	typeref:union:__anon2	file:
 UnitySetTestFile	unity/src/unity.c	/^void UnitySetTestFile(const char* filename)$/;"	f
 UnityStrBreaker	unity/src/unity.c	/^static const char PROGMEM UnityStrBreaker[]                = "-----------------------";$/;"	v	file:
 UnityStrByte	unity/src/unity.c	/^static const char PROGMEM UnityStrByte[]                   = " Byte ";$/;"	v	file:
@@ -1046,42 +1041,40 @@ UnityTestRunner	unity/extras/fixture/src/unity_fixture.c	/^void UnityTestRunner(
 UnityVerbosity	unity/src/unity.c	/^int UnityVerbosity            = 1;$/;"	v
 VAL_UnityOutputCharSpy_OutputChar	unity/extras/memory/test/unity_memory_Test.c	/^#define VAL_UnityOutputCharSpy_OutputChar /;"	d	file:
 Verbose	unity/extras/fixture/src/unity_fixture_internals.h	/^    int Verbose;$/;"	m	struct:UNITY_FIXTURE_T
-X_Lander	src/console.c	/^float X_Lander, Y_Lander;$/;"	v
-Y_Lander	src/console.c	/^float X_Lander, Y_Lander;$/;"	v
 announceTestRun	unity/extras/fixture/src/unity_fixture.c	/^static void announceTestRun(unsigned int runNumber)$/;"	f	file:
 buffer	unity/extras/memory/test/unity_output_Spy.c	/^static char* buffer;$/;"	v	file:
 calloc	unity/extras/memory/src/unity_memory.c	/^#undef calloc$/;"	d	file:
 calloc	unity/extras/memory/src/unity_memory.h	/^#define calloc /;"	d
-console_destroy	src/console.c	/^void console_destroy()$/;"	f
-console_display	src/console.c	/^void console_display(char *s)$/;"	f
 console_display	src/lunar.c	/^void console_display(char *s)$/;"	f
 console_display	test/mock_console.c	/^void console_display(char *message)$/;"	f
-console_init	src/console.c	/^int console_init()$/;"	f
-console_redraw	src/console.c	/^void console_redraw()$/;"	f
+console_exit	src/lunar.c	/^void console_exit(ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, ALLEGRO_TIMER *timer, ALLEGRO_EVENT_QUEUE *queue)$/;"	f
+console_init	src/lunar.c	/^int console_init(ALLEGRO_FONT **font, ALLEGRO_DISPLAY **display, ALLEGRO_TIMER **timer, ALLEGRO_EVENT_QUEUE **queue)$/;"	f
+console_loop	src/lunar.c	/^void console_loop(ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, ALLEGRO_TIMER *timer, ALLEGRO_EVENT_QUEUE *queue)$/;"	f
+console_redraw	src/lunar.c	/^void console_redraw(ALLEGRO_DISPLAY *display, float burn_rate, ALLEGRO_FONT *font)$/;"	f
 controller	src/point.h	/^typedef struct controller {$/;"	s
 controller_init	src/controller.c	/^void controller_init()$/;"	f
+controller_lander_status	src/controller.c	/^int controller_lander_status()$/;"	f
 controller_last_relative_position	src/controller.c	/^float controller_last_relative_position()$/;"	f
 controller_update	src/controller.c	/^void controller_update(unsigned long ticks, float t, float r)$/;"	f
 count	unity/extras/memory/test/unity_output_Spy.c	/^static int count;$/;"	v	file:
-d	unity/src/unity.c	/^    double d;$/;"	m	union:__anon1	file:
+d	unity/src/unity.c	/^    double d;$/;"	m	union:__anon2	file:
 dashRNotLast	unity/extras/fixture/test/unity_fixture_Test.c	/^static const char* dashRNotLast[] = {$/;"	v	file:
 data	unity/extras/fixture/test/template_fixture_tests.c	/^static int data = -1;$/;"	v	file:
 display_lander_state	src/controller.c	/^void display_lander_state()$/;"	f
 end	unity/extras/memory/src/unity_memory.c	/^static const char end[] = "END";$/;"	v	file:
-f	unity/src/unity.c	/^    float f;$/;"	m	union:__anon1	file:
+f	unity/src/unity.c	/^    float f;$/;"	m	union:__anon2	file:
 free	unity/extras/memory/src/unity_memory.c	/^#undef free$/;"	d	file:
 free	unity/extras/memory/src/unity_memory.h	/^#define free /;"	d
-fuel	src/trajectory.h	/^    float fuel;$/;"	m	struct:__anon5
-game_loop	src/console.c	/^int game_loop(int argc, char *argv[])$/;"	f
+fuel	src/trajectory.h	/^    float fuel;$/;"	m	struct:__anon1
 group	unity/extras/fixture/test/unity_fixture_Test.c	/^static const char* group[] = {$/;"	v	file:
 groupSelected	unity/extras/fixture/src/unity_fixture.c	/^static int groupSelected(const char* group)$/;"	f	file:
 guard_space	unity/extras/memory/src/unity_memory.c	/^    size_t guard_space;$/;"	m	struct:GuardBytes	file:
 heap_index	unity/extras/memory/src/unity_memory.c	/^static size_t heap_index;$/;"	v	file:
-height	src/trajectory.h	/^    float height;$/;"	m	struct:__anon5
-i16	unity/src/unity.c	/^    UNITY_INT16 i16;$/;"	m	union:__anon1	file:
-i32	unity/src/unity.c	/^    UNITY_INT32 i32;$/;"	m	union:__anon1	file:
-i64	unity/src/unity.c	/^    UNITY_INT64 i64;$/;"	m	union:__anon1	file:
-i8	unity/src/unity.c	/^    UNITY_INT8 i8;$/;"	m	union:__anon1	file:
+height	src/trajectory.h	/^    float height;$/;"	m	struct:__anon1
+i16	unity/src/unity.c	/^    UNITY_INT16 i16;$/;"	m	union:__anon2	file:
+i32	unity/src/unity.c	/^    UNITY_INT32 i32;$/;"	m	union:__anon2	file:
+i64	unity/src/unity.c	/^    UNITY_INT64 i64;$/;"	m	union:__anon2	file:
+i8	unity/src/unity.c	/^    UNITY_INT8 i8;$/;"	m	union:__anon2	file:
 int1	unity/extras/fixture/test/unity_fixture_Test.c	/^static int int1;$/;"	v	file:
 int2	unity/extras/fixture/test/unity_fixture_Test.c	/^static int int2;$/;"	v	file:
 int3	unity/extras/fixture/test/unity_fixture_Test.c	/^static int int3;$/;"	v	file:
@@ -1165,7 +1158,7 @@ unity_realloc	unity/extras/memory/src/unity_memory.c	/^void* unity_realloc(void*
 unity_size_round_up	unity/extras/memory/src/unity_memory.c	/^static size_t unity_size_round_up(size_t size)$/;"	f	file:
 unityfunction	unity/extras/fixture/src/unity_fixture_internals.h	/^typedef void unityfunction(void);$/;"	t
 unknownCommand	unity/extras/fixture/test/unity_fixture_Test.c	/^static const char* unknownCommand[] = {$/;"	v	file:
-velocity	src/trajectory.h	/^    float velocity;$/;"	m	struct:__anon5
+velocity	src/trajectory.h	/^    float velocity;$/;"	m	struct:__anon1
 verbose	unity/extras/fixture/test/unity_fixture_Test.c	/^static const char* verbose[] = {$/;"	v	file:
 x	src/point.h	/^    double x;$/;"	m	struct:point
 y	src/point.h	/^    double y;$/;"	m	struct:point

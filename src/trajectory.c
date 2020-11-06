@@ -1,4 +1,5 @@
 #include "trajectory.h"
+#include <assert.h>
 
 void lander_initialize(LANDER *lander)
 {
@@ -9,7 +10,7 @@ void lander_initialize(LANDER *lander)
 
 void lander_update(LANDER * lander, float t, float burn_rate)
 {
-    if(lander_status(*lander)==IN_FLIGHT)
+    if(lander_status(*lander)==IN_FLIGHT || lander_status(*lander)==NO_FUEL)
     {
         float actual_rate = lander->fuel >= t * burn_rate ? burn_rate : 0.0;
         lander->height += t * lander->velocity;
@@ -27,6 +28,9 @@ int lander_status(LANDER lander)
         else
             return CRASHED;
     }
-    return IN_FLIGHT;
+    if(lander.fuel > 0.1)
+        return IN_FLIGHT;
+    else
+        return NO_FUEL;
 }
 

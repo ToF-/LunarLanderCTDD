@@ -18,6 +18,7 @@ void display_lander_state()
     switch(lander_status(lander))
     {
         case IN_FLIGHT:
+        case NO_FUEL:
         {
             sprintf(state_message, "HEIGHT:%06.1f -- VELOCITY:%05.1f -- FUEL:%04.1f",
                     lander.height, lander.velocity, lander.fuel);
@@ -53,4 +54,9 @@ void controller_update(unsigned long ticks, float t, float r)
 float controller_last_relative_position()
 {
     return (INITIAL_HEIGHT-lander.height) / INITIAL_HEIGHT;
+}
+
+int controller_lander_status()
+{
+    return lander_status(lander);
 }

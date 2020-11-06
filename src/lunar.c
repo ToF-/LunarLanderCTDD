@@ -3,6 +3,7 @@
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include "allegro5/allegro_primitives.h"
+#include "trajectory.h"
 #include "console.h"
 #include "controller.h"
 #define FONT_NAME "courier.ttf"
@@ -41,7 +42,7 @@ int console_init(ALLEGRO_FONT **font, ALLEGRO_DISPLAY **display, ALLEGRO_TIMER *
     al_register_event_source(*queue, al_get_timer_event_source(*timer));
     return 0;
 }
-void console_redraw(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
+void console_redraw(ALLEGRO_DISPLAY *display, float burn_rate, ALLEGRO_FONT *font)
 {
     float x,y;
     ALLEGRO_COLOR display_color = al_map_rgb(0, 255, 0);
@@ -52,6 +53,12 @@ void console_redraw(ALLEGRO_DISPLAY *display, ALLEGRO_FONT *font)
     x = (float)al_get_display_width(display)/2;
     y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
     al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 255, 255));
+    if(burn_rate > 0.0)
+        if(controller_lander_status() == IN_FLIGHT)
+        {
+            al_draw_filled_triangle(x+5, y+10, x, y+15, x+10, y+15, al_map_rgb(255, 255, 0));
+            al_draw_filled_triangle(x, y+15, x+10, y+15, x+5, y+25, al_map_rgb(255, 255, 0));
+        }
 
     al_flip_display();
 }
@@ -112,7 +119,7 @@ void console_loop(ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, ALLEGRO_TIMER *t
         }
         if(redraw && al_event_queue_is_empty(queue))
         {
-            console_redraw(display, font);
+            console_redraw(display, burn_rate, font);
             redraw = false;
         }
     }

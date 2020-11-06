@@ -5,8 +5,9 @@
 #define INITIAL_FUEL 20.0
 #define SAFE_VELOCITY (-0.5)
 #define IN_FLIGHT 0
-#define LANDED 1
-#define CRASHED 2
+#define NO_FUEL 1
+#define LANDED 2
+#define CRASHED 3
 
 typedef struct {
     float height;

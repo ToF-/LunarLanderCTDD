@@ -10,4 +10,5 @@ TEST_GROUP_RUNNER(Trajectory)
     RUN_TEST_CASE(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity);
     RUN_TEST_CASE(Trajectory, AfterLandingOrCrashingLanderCantUpdate);
     RUN_TEST_CASE(Trajectory, WhenOutOfFuelBurnRateFallsToZeroWhenUpdating);
+    RUN_TEST_CASE(Trajectory, WhenOutOfFuelStatusIsNO_FUEL);
 }

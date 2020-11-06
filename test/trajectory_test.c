@@ -67,6 +67,16 @@ TEST(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity)
     lander.velocity = -1.5;
     TEST_ASSERT_EQUAL(CRASHED, lander_status(lander));
 }
+
+TEST(Trajectory, WhenOutOfFuelStatusIsNO_FUEL)
+{
+    LANDER lander;
+    lander_initialize(&lander);
+    lander.height = 8.0;
+    lander.velocity = -1.5;
+    lander.fuel = 0.0;
+    TEST_ASSERT_EQUAL(NO_FUEL, lander_status(lander));
+}
 TEST(Trajectory, AfterLandingOrCrashingLanderCantUpdate)
 {
     LANDER lander;

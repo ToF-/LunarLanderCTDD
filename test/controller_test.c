@@ -1,5 +1,6 @@
 #include "unity_fixture.h"
 #include "controller.h"
+#include "trajectory.h"
 #include "mock_console.h"
 
 TEST_GROUP(Controller);
@@ -56,4 +57,9 @@ TEST(Controller, ChangesStateMessageIfCrashedOrLanded)
         controller_update(i, 1.0, 0.0);
     }
     TEST_ASSERT_EQUAL_STRING("STATUS:CRASHED", last_message);
+}
+TEST(Controller, GetLanderStatus)
+{
+    controller_init();
+    TEST_ASSERT_EQUAL_INT(IN_FLIGHT, controller_lander_status());
 }
