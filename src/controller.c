@@ -9,7 +9,8 @@ static LANDER lander;
 void controller_init()
 {
     lander_initialize(&lander);
-    console_display("LUNAR LANDING -- READY");
+    sprintf(state_message,"LUNAR LANDING -- READY IN 3");
+    console_display(state_message);
 }
 
 void display_lander_state()
@@ -41,6 +42,11 @@ void controller_update(unsigned long ticks, float t, float r)
     {
         lander_update(&lander, t, r);
         display_lander_state();
+    }
+    else
+    {
+        sprintf(state_message,"LUNAR LANDING -- READY IN %d", 3-((int)ticks)/30);
+        console_display(state_message);
     }
 }
 
