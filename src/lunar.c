@@ -44,22 +44,28 @@ int console_init(ALLEGRO_FONT **font, ALLEGRO_DISPLAY **display, ALLEGRO_TIMER *
 }
 void console_redraw(ALLEGRO_DISPLAY *display, float burn_rate, ALLEGRO_FONT *font)
 {
-    float x,y;
-    ALLEGRO_COLOR display_color = al_map_rgb(0, 255, 0);
-    
     al_clear_to_color(al_map_rgb(0, 0, 0));
-    al_draw_text(font, display_color, 10, 10, 0, message);
+    al_draw_text(font, al_map_rgb(0, 255, 0), 10, 10, 0, message);
     al_draw_line(0.0, (float)al_get_display_height(display)-20.0, (float)al_get_display_width(display), (float)al_get_display_height(display)-20.0, al_map_rgb(0,255,5),1.0);
-    x = (float)al_get_display_width(display)/2;
-    y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
-    al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 255, 255));
-    if(burn_rate > 0.0)
-        if(controller_lander_status() == IN_FLIGHT)
-        {
-            al_draw_filled_triangle(x+5, y+10, x, y+15, x+10, y+15, al_map_rgb(255, 255, 0));
-            al_draw_filled_triangle(x, y+15, x+10, y+15, x+5, y+25, al_map_rgb(255, 255, 0));
-        }
-
+    float x = (float)al_get_display_width(display)/2;
+    float y = controller_last_relative_position() * ((float)al_get_display_height(display)-30.0);
+    int status = controller_lander_status();
+    switch(status)
+    {
+        case CRASHED:
+            al_draw_filled_circle(x, y, 10, al_map_rgb(255, 127, 0));
+            break;
+        case LANDED:
+            al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 255, 255));
+            break;
+        default:
+            al_draw_filled_rectangle(x, y, x + 10, y + 10, al_map_rgb(255, 255, 255));
+            if(burn_rate > 0.0 && status != NO_FUEL)
+            {
+                    al_draw_filled_triangle(x+5, y+10, x, y+15, x+10, y+15, al_map_rgb(255, 255, 0));
+                    al_draw_filled_triangle(x, y+15, x+10, y+15, x+5, y+25, al_map_rgb(255, 255, 0));
+            }
+    }
     al_flip_display();
 }
 void console_exit(ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, ALLEGRO_TIMER *timer, ALLEGRO_EVENT_QUEUE *queue)
@@ -80,8 +86,6 @@ void console_loop(ALLEGRO_FONT *font, ALLEGRO_DISPLAY *display, ALLEGRO_TIMER *t
     unsigned long ticks=0;
     float burn_rate = 0.0;
     float x,y;
-    x = (float)al_get_display_width(display)/2;
-    y = (float)al_get_display_height(display)/5;
     al_start_timer(timer);
     while(!quit)
     {
