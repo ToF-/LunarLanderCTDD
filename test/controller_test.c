@@ -7,6 +7,7 @@ TEST_GROUP(Controller);
 
 TEST_SETUP(Controller)
 {
+    controller_init();
 }
 
 TEST_TEAR_DOWN(Controller)
@@ -15,13 +16,11 @@ TEST_TEAR_DOWN(Controller)
 
 TEST(Controller, DisplaysWhenInitialized)
 {
-    controller_init();
     TEST_ASSERT_EQUAL_STRING("LUNAR LANDING -- READY IN 3", last_message);
 }
 
 TEST(Controller, InTheFirst3SecondsDisplaysWarningMessage)
 {
-    controller_init();
     controller_update(0, 0.0, 0.0);
     TEST_ASSERT_EQUAL_STRING("LUNAR LANDING -- READY IN 3", last_message);
     controller_update(31, 0.0, 0.0);
@@ -31,7 +30,6 @@ TEST(Controller, InTheFirst3SecondsDisplaysWarningMessage)
 }
 TEST(Controller, After3SecondsDisplaysLanderState)
 {
-    controller_init();
     controller_update(0, 0.0, 0.0);
     controller_update(90, 1.0, 0.0);
     TEST_ASSERT_EQUAL_STRING("HEIGHT:0050.0 -- VELOCITY:-00.5 -- FUEL:20.0", last_message);
@@ -39,7 +37,6 @@ TEST(Controller, After3SecondsDisplaysLanderState)
 
 TEST(Controller, CalculatesRelativePositionOfLander)
 {
-    controller_init();
     controller_update(90, 1.0, 0.0);
     TEST_ASSERT_EQUAL_FLOAT(0.0, controller_last_relative_position());
     controller_update(91, 1.0, 0.0);
@@ -52,7 +49,6 @@ TEST(Controller, CalculatesRelativePositionOfLander)
 
 TEST(Controller, ChangesStateMessageIfCrashedOrLanded)
 {
-    controller_init();
     for(int i; i<1000; i++) {
         controller_update(i, 1.0, 0.0);
     }
@@ -60,6 +56,5 @@ TEST(Controller, ChangesStateMessageIfCrashedOrLanded)
 }
 TEST(Controller, GetLanderStatus)
 {
-    controller_init();
     TEST_ASSERT_EQUAL_INT(IN_FLIGHT, controller_lander_status());
 }

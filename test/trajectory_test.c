@@ -4,8 +4,10 @@
 
 TEST_GROUP(Trajectory);
 
+LANDER lander;
 TEST_SETUP(Trajectory)
 {
+    lander_initialize(&lander);
 }
 
 TEST_TEAR_DOWN(Trajectory)
@@ -14,8 +16,6 @@ TEST_TEAR_DOWN(Trajectory)
 
 TEST(Trajectory, InitialState)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     TEST_ASSERT_EQUAL_FLOAT(INITIAL_HEIGHT, lander.height);
     TEST_ASSERT_EQUAL_FLOAT(INITIAL_VELOCITY, lander.velocity);
     TEST_ASSERT_EQUAL_FLOAT(INITIAL_FUEL, lander.fuel);
@@ -23,8 +23,6 @@ TEST(Trajectory, InitialState)
 
 TEST(Trajectory, StateAfter1SecondUpdateWithBurnRate0)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     lander_update(&lander, 1.0, 0.0);
     TEST_ASSERT_EQUAL_FLOAT(INITIAL_HEIGHT, lander.height);
     TEST_ASSERT_EQUAL_FLOAT(-GRAVITY, lander.velocity);
@@ -32,8 +30,6 @@ TEST(Trajectory, StateAfter1SecondUpdateWithBurnRate0)
 }
 TEST(Trajectory, StateAfter2UpdatesWithBurnRate0)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     lander_update(&lander, 1.0, 0.0);
     lander_update(&lander, 1.0, 0.0);
     TEST_ASSERT_EQUAL_FLOAT(INITIAL_HEIGHT-GRAVITY, lander.height);
@@ -42,8 +38,6 @@ TEST(Trajectory, StateAfter2UpdatesWithBurnRate0)
 }
 TEST(Trajectory, StateAfter2UpdatesWithBurnRate1)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     lander_update(&lander, 1.0, 1.0);
     lander_update(&lander, 1.0, 1.0);
     TEST_ASSERT_EQUAL_FLOAT(INITIAL_HEIGHT+0.5, lander.height);
@@ -52,8 +46,6 @@ TEST(Trajectory, StateAfter2UpdatesWithBurnRate1)
 }
 TEST(Trajectory, StatusWhenHeightIsZeroAndSafeVelocity)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     TEST_ASSERT_EQUAL(IN_FLIGHT, lander_status(lander));
     lander.height = 0.0;
     lander.velocity = -0.5;
@@ -61,8 +53,6 @@ TEST(Trajectory, StatusWhenHeightIsZeroAndSafeVelocity)
 }
 TEST(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     lander.height = 0.0;
     lander.velocity = -1.5;
     TEST_ASSERT_EQUAL(CRASHED, lander_status(lander));
@@ -70,8 +60,6 @@ TEST(Trajectory, StatusWhenHeightIsZeroAndUnsafeVelocity)
 
 TEST(Trajectory, WhenOutOfFuelStatusIsNO_FUEL)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     lander.height = 8.0;
     lander.velocity = -1.5;
     lander.fuel = 0.0;
@@ -79,8 +67,6 @@ TEST(Trajectory, WhenOutOfFuelStatusIsNO_FUEL)
 }
 TEST(Trajectory, AfterLandingOrCrashingLanderCantUpdate)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     lander.height = 0.0;
     lander.velocity = -0.5;
     TEST_ASSERT_EQUAL(LANDED, lander_status(lander));
@@ -94,8 +80,6 @@ TEST(Trajectory, AfterLandingOrCrashingLanderCantUpdate)
 }
 TEST(Trajectory, WhenOutOfFuelBurnRateFallsToZeroWhenUpdating)
 {
-    LANDER lander;
-    lander_initialize(&lander);
     lander.fuel = 0;
     lander_update(&lander, 1.0, 1.0);
     lander_update(&lander, 1.0, 1.0);
